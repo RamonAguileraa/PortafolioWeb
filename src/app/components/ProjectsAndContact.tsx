@@ -178,7 +178,7 @@ export default function ProjectsAndContact() {
         </p>
 
         <a
-          href="https://wa.me/61422833958?text=Hola%20Ramón%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte%20por%20mensaje."
+          href="https://wa.me/526142283958?text=Hola%20Ramón%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte%20por%20mensaje."
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 text-black font-semibold bg-pink-500 hover:bg-pink-400 rounded-lg transition shadow-lg"
