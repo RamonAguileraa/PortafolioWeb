@@ -53,30 +53,36 @@ export default function ExperienceTimeline() {
       className="relative w-full bg-black text-white py-32 px-6 md:px-12 overflow-hidden"
     >
       {/* Partículas */}
-      <Particles
-        id="tsparticles-experience"
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: false },
-          particles: {
-            number: { value: 70, density: { enable: true, area: 800 } },
-            color: { value: "#ff90e8" },
-            shape: { type: ["circle", "triangle"] },
-            size: { value: { min: 0.6, max: 2.2 }, random: true },
-            opacity: { value: { min: 0.1, max: 0.25 } },
-            move: {
-              enable: true,
-              speed: 0.4,
-              direction: "none",
-              outModes: "out",
-            },
-            links: { enable: false },
-          },
-          detectRetina: true,
-        }}
-        className="absolute inset-0 w-full h-full z-0"
-      />
-
+     <Particles
+            id="tsparticles"
+            init={particlesInit}
+            options={{
+              fullScreen: { enable: false },
+              particles: {
+                number: {
+                  value: 120,
+                  density: { enable: true, area: 700 },
+                },
+                color: { value: "#B76DF0" },
+                shape: { type: "circle" },
+                size: {
+                  value: { min: 0.5, max: 1.5 },
+                },
+                opacity: {
+                  value: 0.35,
+                },
+                move: {
+                  enable: true,
+                  speed: 0.6,
+                  direction: "none",
+                  outModes: "out",
+                },
+                links: { enable: false },
+              },
+              detectRetina: true,
+            }}
+            className="absolute inset-0 w-full h-full z-0"
+          />
       {/* Título */}
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
