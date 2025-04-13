@@ -21,14 +21,21 @@ export default function Hero() {
         options={{
           fullScreen: { enable: false },
           particles: {
-            number: { value: 80, density: { enable: true, area: 800 } },
+            number: {
+              value: 120,
+              density: { enable: true, area: 700 },
+            },
             color: { value: "#ff4dcd" },
             shape: { type: "circle" },
-            size: { value: { min: 0.5, max: 2.5 } },
-            opacity: { value: 0.2 },
+            size: {
+              value: { min: 1, max: 3 },
+            },
+            opacity: {
+              value: 0.35,
+            },
             move: {
               enable: true,
-              speed: 0.5,
+              speed: 0.6,
               direction: "none",
               outModes: "out",
             },
@@ -100,18 +107,16 @@ export default function Hero() {
 
       <div className="absolute bottom-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
         <svg
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-            className="w-full h-24"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="w-full h-24"
         >
-            <path
+          <path
             d="M0,0 C600,120 600,0 1200,100 L1200,0 L0,0 Z"
             fill="black"
-            />
+          />
         </svg>
-        </div>
-
-
+      </div>
     </main>
   );
 }
