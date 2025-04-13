@@ -76,7 +76,7 @@ const projects = [
     category: "Videojuegos",
     link: "#",
     description: "Videojuego 3D estilo aventura con exploración narrativa en campamento.",
-    image: "/CAMPHOLLOW.jpg",
+    image: "/camphollow.jpg",
   },
 ];
 
