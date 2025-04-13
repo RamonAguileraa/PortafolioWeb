@@ -66,7 +66,7 @@ export default function ExperienceTimeline() {
                 color: { value: "#B76DF0" },
                 shape: { type: "circle" },
                 size: {
-                  value: { min: 0.5, max: 1.5 },
+                  value: { min: 0.8, max: 2 },
                 },
                 opacity: {
                   value: 0.35,
