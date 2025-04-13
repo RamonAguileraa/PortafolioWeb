@@ -1,5 +1,4 @@
 import Hero from "./components/Hero";
-import About from "./about/page";
 import ExperienceTimeline from "./components/ExperienceTimeline";
 
 import Footer from "./components/Footer";
