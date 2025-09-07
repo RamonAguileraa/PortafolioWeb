@@ -12,9 +12,9 @@ const scrollToSection = (id: string) => {
 
 const links = [
   { name: "Inicio", href: "#inicio" },
-  { name: "Sobre mí", href: "/about" }, // página externa
+  { name: "Sobre mí", href: "#about" },
   { name: "Experiencia", href: "#experiencia" },
-  { name: "Proyectos", href: "#proyectos" },
+  { name: "Proyectos", href: "#projects" },
   { name: "Contacto", href: "#contacto" },
 ];
 

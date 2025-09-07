@@ -1,160 +1,260 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { FaWhatsapp } from "react-icons/fa";
+import { motion } from 'framer-motion'
+import { useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { ExternalLink, Github, Calendar, Tag } from 'lucide-react'
+import { projects, Project } from '../../data/projects'
+import Image from 'next/image'
+import { FaWhatsapp } from 'react-icons/fa'
 
-const tabs = ["Todos", "Web", "Videojuegos", "Marketing"];
+const ProjectsAndContact = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [filter, setFilter] = useState<'all' | 'web' | 'mobile' | 'fullstack' | 'design' | 'marketing' | 'videojuegos'>('all')
 
-const projects = [
-  {
-    title: "Marketing - El Zarandeado",
-    category: "Marketing",
-    link: "#",
-    description: "Propuesta de marketing con un conversor de divisas en PHP y React, utilizando la API de Fixer.",
-    image: "/zarandeado.png",
-  },
-  {
-    title: "Marketing - Celda27",
-    category: "Marketing",
-    link: "#",
-    description: "Estrategia de redes sociales que incrementó seguidores en un 200%.",
-    image: "/celda27.jpg",
-  },
-  {
-    title: "Ibenteu",
-    category: "Web",
-    link: "https://github.com/RamonAguileraa/aroma_cafe",
-    description: "Plataforma de reservación de salones con PHP y vanilla JS.",
-    image: "/IBENTEU.png",
-  },
-  {
-    title: "€NLIGNE",
-    category: "Web",
-    link: "https://github.com/RamonAguileraa/rincondel_grano",
-    description: "Conversor de divisas con PHP y React, integración de API Fixer.",
-    image: "/enligne.png",
-  },
-  {
-    title: "Aroma Café",
-    category: "Web",
-    link: "https://github.com/RamonAguileraa/aroma_cafe",
-    description: "Sitio web visual para una cafetería ficticia, desarrollado en PHP.",
-    image: "/cafearoma.png",
-  },
-  {
-    title: "Rincón del Grano",
-    category: "Web",
-    link: "https://github.com/RamonAguileraa/rincondel_grano",
-    description: "Landing page profesional para cafetería con enfoque UX/UI.",
-    image: "/rinconcafe.png",
-  },
-  {
-    title: "Noticias Canal 28",
-    category: "Web",
-    link: "#",
-    description: "Sitio informativo para televisora Canal 28.",
-    image: "/canal28.jpg",
-  },
-  {
-    title: "Wall Or Fall (2D)",
-    category: "Videojuegos",
-    link: "https://github.com/RamonAguileraa/Wall-Or-Fall",
-    description: "Juego de plataformas 2D desarrollado en Ingeniería.",
-    image: "/wallorfall.jpg",
-  },
-  {
-    title: "Tibucami (3D)",
-    category: "Videojuegos",
-    link: "#",
-    description: "Ganador en Ludic Jam, videojuego sobre Chihuahua con enfoque cultural.",
-    image: "/tibucami.jpg",
-  },
-  {
-    title: "Camp Hollow (3D)",
-    category: "Videojuegos",
-    link: "#",
-    description: "Videojuego 3D estilo aventura con exploración narrativa en campamento.",
-    image: "/camphollow.jpg",
-  },
-];
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
 
-export default function ProjectsAndContact() {
-  const [activeTab, setActiveTab] = useState("Todos");
-  const filtered = activeTab === "Todos" ? projects : projects.filter(p => p.category === activeTab);
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  }
+
+  const filteredProjects = filter === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === filter)
+
+  const categories = [
+    { key: 'all', label: 'Todos' },
+    { key: 'web', label: 'Web' },
+    { key: 'mobile', label: 'Móvil' },
+    { key: 'fullstack', label: 'Full Stack' },
+    { key: 'design', label: 'Diseño' },
+    { key: 'marketing', label: 'Marketing' },
+    { key: 'videojuegos', label: 'Videojuegos' },
+  ]
+
+  const getStatusColor = (status: Project['status']) => {
+    switch (status) {
+      case 'completed':
+        return 'bg-green-500/20 border border-green-500/30 text-green-400'
+      case 'in-progress':
+        return 'bg-yellow-500/20 border border-yellow-500/30 text-yellow-400'
+      case 'planned':
+        return 'bg-blue-500/20 border border-blue-500/30 text-blue-400'
+      default:
+        return 'bg-gray-500/20 border border-gray-500/30 text-gray-400'
+    }
+  }
+
+  const getStatusText = (status: Project['status']) => {
+    switch (status) {
+      case 'completed':
+        return 'Completado'
+      case 'in-progress':
+        return 'En progreso'
+      case 'planned':
+        return 'Planificado'
+      default:
+        return 'Desconocido'
+    }
+  }
 
   return (
-    <section
-      id="proyectos"
-      className="scroll-mt-28 md:scroll-mt-32 relative w-full bg-gradient-to-b from-black via-[#0d0d0d] to-[#111] text-white pt-32 pb-32 px-6 md:px-12 overflow-hidden"
-    >
-      {/* Fondo compartido difuminado */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-pink-500 blur-[180px] opacity-20 pointer-events-none z-0" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-fuchsia-500 blur-[160px] opacity-20 pointer-events-none z-0" />
-      <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-pink-400 blur-[160px] opacity-10 pointer-events-none z-0" />
+    <section id="projects" className="py-20 bg-black text-white overflow-hidden relative">
+      {/* Fondo con efectos similares al diseño existente */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-pink-500 blur-[180px] opacity-20 z-0" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-fuchsia-600 blur-[160px] opacity-20 z-0" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="max-w-6xl mx-auto"
+        >
+          {/* Section Header */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+              Mis <span className="bg-gradient-to-r from-pink-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent drop-shadow">proyectos</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Una selección de proyectos que demuestran mi experiencia y pasión por
+              crear soluciones digitales innovadoras
+            </p>
+          </motion.div>
 
-      {/* Título Proyectos */}
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl font-bold text-center mb-16 relative z-10"
-      >
-        <span className="bg-gradient-to-r from-pink-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent drop-shadow">
-          Proyectos personales
-        </span>
-      </motion.h2>
-
-      {/* Tabs */}
-      <div className="flex justify-center gap-4 flex-wrap mb-12 relative z-10">
-        {tabs.map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition ${
-              activeTab === tab
-                ? "bg-pink-500 text-black border-pink-500"
-                : "border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-black"
-            }`}
+          {/* Filter Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-4 mb-12"
           >
-            {tab}
-          </button>
-        ))}
-      </div>
+            {categories.map((category) => (
+              <button
+                key={category.key}
+                onClick={() => setFilter(category.key as any)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                  filter === category.key
+                    ? 'bg-pink-500 text-white shadow-lg'
+                    : 'bg-white/10 border border-pink-500/20 text-pink-400 hover:bg-pink-500/20'
+                }`}
+              >
+                {category.label}
+              </button>
+            ))}
+          </motion.div>
 
-      {/* Grid de proyectos */}
-      <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative z-10 mb-28">
-        {filtered.map((project, i) => (
-          <motion.a
-            key={i}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.015 }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden shadow-lg hover:shadow-pink-500/30 transition cursor-pointer"
+          {/* Projects Grid */}
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            <div className="relative w-full h-48 sm:h-52 md:h-56">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover group-hover:blur-sm group-hover:scale-105 transition duration-300 will-change-transform rounded-t-xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-pink-500/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
-            </div>
-            <div className="p-4">
-              <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-              <p className="text-sm text-gray-400">{project.description}</p>
-            </div>
-          </motion.a>
-        ))}
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+              >
+                {/* Project Image */}
+                <div className="relative h-48 bg-gray-800 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-fuchsia-500/20" />
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                    {project.githubUrl && (
+                      <motion.a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-3 bg-white rounded-full hover:bg-gray-100 transition-colors duration-200"
+                        aria-label="Ver código en GitHub"
+                      >
+                        <Github className="h-6 w-6 text-gray-800" />
+                      </motion.a>
+                    )}
+                    {project.liveUrl && (
+                      <motion.a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-3 bg-white rounded-full hover:bg-gray-100 transition-colors duration-200"
+                        aria-label="Ver proyecto en vivo"
+                      >
+                        <ExternalLink className="h-6 w-6 text-gray-800" />
+                      </motion.a>
+                    )}
+                  </div>
+
+                  {/* Featured Badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-pink-500 text-white text-xs font-semibold rounded-full">
+                        Destacado
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Project Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xl font-bold text-white group-hover:text-pink-400 transition-colors duration-200">
+                      {project.title}
+                    </h3>
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(project.status)}`}>
+                      {getStatusText(project.status)}
+                    </span>
+                  </div>
+
+                  <p className="text-gray-300 mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span className="px-3 py-1 bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs rounded-full">
+                        +{project.technologies.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Project Meta */}
+                  <div className="flex items-center justify-between text-sm text-gray-400">
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="h-4 w-4" />
+                      <span>
+                        {new Date(project.startDate).getFullYear()}
+                        {project.endDate && ` - ${new Date(project.endDate).getFullYear()}`}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Tag className="h-4 w-4" />
+                      <span className="capitalize">{project.category}</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center mt-16"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                const contactSection = document.querySelector('#contacto')
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+              className="px-8 py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            >
+              ¿Tienes un proyecto en mente?
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Sección Contacto unificada */}
@@ -188,5 +288,7 @@ export default function ProjectsAndContact() {
         </a>
       </motion.div>
     </section>
-  );
+  )
 }
+
+export default ProjectsAndContact

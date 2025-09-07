@@ -86,20 +86,20 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Imagen más grande en PC */}
+          {/* Espacio para mantener el layout */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="flex-1 flex justify-center md:justify-end"
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-lg w-[240px] h-[360px] md:w-[320px] md:h-[520px] xl:w-[380px] xl:h-[580px]">
-              <Image
-                src="/yo.png"
-                alt="Ramon Aguilera"
-                fill
-                className="object-cover"
-              />
+            <div className="w-[240px] h-[360px] md:w-[320px] md:h-[520px] xl:w-[380px] xl:h-[580px] flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-pink-500/20 to-fuchsia-500/20 rounded-full flex items-center justify-center mb-4">
+                  <span className="text-4xl md:text-5xl">👨‍💻</span>
+                </div>
+                <p className="text-gray-400 text-sm">Desarrollador Web</p>
+              </div>
             </div>
           </motion.div>
         </div>
