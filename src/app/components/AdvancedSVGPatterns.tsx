@@ -288,3 +288,4 @@ const AdvancedSVGPatterns = ({ variant = 'section' }: AdvancedSVGPatternsProps) 
 
 export default AdvancedSVGPatterns
 
+

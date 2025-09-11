@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { ChevronDown, Sparkles } from 'lucide-react'
 import dynamic from 'next/dynamic'
-import ThemeToggle from './ThemeToggle'
 
 const MeteoriteLines = dynamic(() => import('./MeteoriteLines'), { ssr: false })
 const CodeParticles = dynamic(() => import('./CodeParticles'), { ssr: false })
@@ -34,11 +33,6 @@ const EnhancedHero = () => {
       
       {/* Partículas de código */}
       <CodeParticles />
-
-      {/* Toggle de tema */}
-      <div className="absolute top-6 right-6 z-20">
-        <ThemeToggle />
-      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">

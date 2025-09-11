@@ -41,7 +41,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-24 bg-black text-white overflow-hidden relative">
+    <section id="about" className="py-24 bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black overflow-hidden relative transition-colors duration-300">
       {/* Fondo simple */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-pink-500 blur-[180px] opacity-10" />
@@ -139,7 +139,7 @@ const About = () => {
               {/* Profile Image */}
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-fuchsia-500 rounded-2xl transform rotate-3"></div>
-                <div className="relative bg-black p-2 rounded-2xl">
+                <div className="relative bg-black dark:bg-black light:bg-white p-2 rounded-2xl">
                   <div className="relative overflow-hidden rounded-xl shadow-lg w-full h-96">
                     <Image
                       src="/yo.png"

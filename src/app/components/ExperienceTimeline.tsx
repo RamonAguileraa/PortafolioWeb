@@ -52,7 +52,7 @@ export default function ExperienceTimeline() {
   return (
     <section
       id="experiencia"
-      className="relative w-full bg-black text-white py-24 px-6 md:px-12 overflow-hidden"
+      className="relative w-full bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black py-24 px-6 md:px-12 overflow-hidden transition-colors duration-300"
     >
       {/* Fondo avanzado con blobs completos */}
       <AdvancedBackground variant="section" />

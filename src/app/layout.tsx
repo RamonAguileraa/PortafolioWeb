@@ -48,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className="dark">
-      <body className={`${inter.className} bg-black text-white dark:bg-black dark:text-white light:bg-white light:text-black transition-colors duration-300`}>
+    <html lang="es">
+      <body className={`${inter.className} bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black transition-colors duration-300`}>
         <ThemeProvider>
           <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>

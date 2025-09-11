@@ -29,3 +29,4 @@ const LazySection = ({ children, className = '', delay = 0 }: LazySectionProps) 
 
 export default LazySection
 
+

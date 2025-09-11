@@ -7,15 +7,10 @@ import { Sun, Moon } from 'lucide-react'
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
 
-  const handleClick = () => {
-    console.log('Toggle clicked, current theme:', theme)
-    toggleTheme()
-  }
-
   return (
     <motion.button
-      onClick={handleClick}
-      className="relative p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-200"
+      onClick={toggleTheme}
+      className="relative p-2 rounded-lg bg-white/10 dark:bg-white/10 light:bg-black/10 backdrop-blur-md border border-white/20 dark:border-white/20 light:border-black/20 hover:bg-white/20 dark:hover:bg-white/20 light:hover:bg-black/20 transition-all duration-200"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       aria-label="Toggle theme"
@@ -25,7 +20,7 @@ export default function ThemeToggle() {
         initial={{ rotate: -180, opacity: 0 }}
         animate={{ rotate: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="text-white"
+        className="text-white dark:text-white light:text-black"
       >
         {theme === 'light' ? (
           <Moon className="h-5 w-5" />

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 import { projects } from '../../data/projects'
-import ThemeToggle from '../components/ThemeToggle'
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
 import dynamic from 'next/dynamic'
@@ -32,11 +31,6 @@ export default function ProjectsPage() {
       <section className="relative py-24 px-6 md:px-12 overflow-hidden">
         <AdvancedBackground variant="section" />
         <CodeParticles />
-        
-        {/* Toggle de tema */}
-        <div className="absolute top-6 right-6 z-20">
-          <ThemeToggle />
-        </div>
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle";
 
 const scrollToSection = (id: string) => {
   const el = document.querySelector(id);
@@ -36,7 +37,9 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 w-full z-50 transition-all ${
-        scrolled ? "backdrop-blur-lg bg-black/70 shadow-lg" : "bg-transparent"
+        scrolled 
+          ? "backdrop-blur-lg bg-black/70 dark:bg-black/70 light:bg-white/70 shadow-lg" 
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -49,13 +52,13 @@ export default function Navbar() {
         </span>
 
         {/* Desktop links */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-8 items-center">
           {links.map((link, idx) =>
             link.href.startsWith("/") ? (
               <Link
                 key={idx}
                 href={link.href}
-                className="text-white hover:text-pink-400 transition font-medium"
+                className="text-white dark:text-white light:text-black hover:text-pink-400 transition font-medium"
               >
                 {link.name}
               </Link>
@@ -63,23 +66,27 @@ export default function Navbar() {
               <span
                 key={idx}
                 onClick={() => scrollToSection(link.href)}
-                className="cursor-pointer text-white hover:text-pink-400 transition font-medium"
+                className="cursor-pointer text-white dark:text-white light:text-black hover:text-pink-400 transition font-medium"
               >
                 {link.name}
               </span>
             )
           )}
+          <ThemeToggle />
         </div>
 
-        {/* Mobile toggle */}
-        <div className="md:hidden text-white z-50" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        {/* Mobile controls */}
+        <div className="md:hidden flex items-center gap-4">
+          <ThemeToggle />
+          <div className="text-white dark:text-white light:text-black z-50" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </div>
         </div>
       </div>
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/90 backdrop-blur-md flex flex-col gap-6 px-6 pb-6 pt-4">
+        <div className="md:hidden bg-black/90 dark:bg-black/90 light:bg-white/90 backdrop-blur-md flex flex-col gap-6 px-6 pb-6 pt-4">
           {links.map((link, idx) =>
             link.href.startsWith("/") ? (
               <Link
