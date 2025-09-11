@@ -3,10 +3,9 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Code, Coffee, Heart, Users, Sparkles, Zap } from 'lucide-react'
+import { Code, Coffee, Heart, Users, Sparkles } from 'lucide-react'
 import Image from 'next/image'
-import AnimatedImage from '../components/AnimatedImage'
-import TypewriterText from '../components/TypewriterText'
+import LiveStats from '../components/LiveStats'
 
 const About = () => {
   const ref = useRef(null)
@@ -30,7 +29,6 @@ const About = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
       },
     },
   }
@@ -43,10 +41,12 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-20 bg-black text-white overflow-hidden relative">
-      {/* Fondo con efectos similares al diseño existente */}
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-pink-500 blur-[180px] opacity-20 z-0" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-fuchsia-600 blur-[160px] opacity-20 z-0" />
+    <section id="about" className="py-24 bg-black text-white overflow-hidden relative">
+      {/* Fondo simple */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-pink-500 blur-[180px] opacity-10" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-fuchsia-600 blur-[160px] opacity-10" />
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -147,6 +147,8 @@ const About = () => {
                       fill
                       className="object-cover"
                       priority
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                   </div>
                 </div>
@@ -154,7 +156,7 @@ const About = () => {
 
               {/* Stats */}
               <div className="grid grid-cols-2 gap-6">
-                {stats.map((stat, index) => (
+                {stats.map((stat) => (
                   <motion.div
                     key={stat.label}
                     variants={itemVariants}
@@ -172,6 +174,19 @@ const About = () => {
               </div>
             </motion.div>
           </div>
+
+          {/* Estadísticas en vivo */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-16 mb-16"
+          >
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">
+              <span className="bg-gradient-to-r from-pink-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
+                Estadísticas en tiempo real
+              </span>
+            </h3>
+            <LiveStats />
+          </motion.div>
 
           {/* Learning Section */}
           <motion.div

@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Particles from "react-tsparticles";
 import { useCallback } from "react";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
+import AdvancedBackground from "./AdvancedBackground";
+import CodeParticles from "./CodeParticles";
 
 export default function Hero() {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -14,6 +15,12 @@ export default function Hero() {
 
   return (
     <main className="relative w-full h-screen bg-black text-white overflow-hidden" id="inicio">
+      {/* Fondo avanzado con blobs completos */}
+      <AdvancedBackground variant="hero" />
+      
+      {/* Partículas de código */}
+      <CodeParticles />
+      
       {/* Partículas tipo destellos */}
       <Particles
         id="tsparticles"
@@ -22,7 +29,7 @@ export default function Hero() {
           fullScreen: { enable: false },
           particles: {
             number: {
-              value: 120,
+              value: 80,
               density: { enable: true, area: 700 },
             },
             color: { value: "#ff4dcd" },
@@ -31,11 +38,11 @@ export default function Hero() {
               value: { min: 0.5, max: 1.5 },
             },
             opacity: {
-              value: 0.35,
+              value: 0.25,
             },
             move: {
               enable: true,
-              speed: 0.6,
+              speed: 0.4,
               direction: "none",
               outModes: "out",
             },
@@ -79,10 +86,13 @@ export default function Hero() {
             </p>
             <a
               href="/CV-Ramon-Aguilera.pdf"
-              download
-              className="mt-6 inline-block px-6 py-3 border-2 border-pink-500 text-pink-500 font-semibold rounded-lg hover:bg-pink-500 hover:text-black transition"
+              download="CV-Ramon-Aguilera.pdf"
+              className="mt-8 inline-flex items-center gap-3 px-6 sm:px-8 py-4 border-2 border-pink-500 text-pink-500 font-semibold rounded-lg hover:bg-pink-500 hover:text-black transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Descargar CV
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span className="text-sm sm:text-base">Descargar CV</span>
             </a>
           </motion.div>
 

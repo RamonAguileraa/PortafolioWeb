@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import ClientLayout from "./components/ClientLayout"; // nuevo componente
+import ClientLayout from "./components/ClientLayout";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,6 @@ export const metadata = {
   ],
   authors: [{ name: "Ramon Aguilera", url: "https://github.com/RamonAguileraa" }],
   creator: "Ramon Aguilera",
-  themeColor: "#000000",
   openGraph: {
     title: "Ramon Aguilera | Portafolio",
     description: "Desarrollador web fullstack enfocado en experiencias visuales con Next.js.",
@@ -38,15 +38,21 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#000000",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className={`${inter.className} bg-black text-white`}>
-        <ClientLayout>{children}</ClientLayout>
+    <html lang="es" className="dark">
+      <body className={`${inter.className} bg-black text-white dark:bg-black dark:text-white light:bg-white light:text-black transition-colors duration-300`}>
+        <ThemeProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </ThemeProvider>
       </body>
     </html>
   );

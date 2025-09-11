@@ -1,15 +1,17 @@
-import Hero from "./components/Hero";
-import ExperienceTimeline from "./components/ExperienceTimeline";
+import EnhancedHero from "./components/EnhancedHero";
+import EnhancedExperience from "./components/EnhancedExperience";
 import About from "./about/page";
 import Footer from "./components/Footer";
+import EnhancedProjects from "./components/EnhancedProjects";
 import ProjectsAndContact from "./components/ProjectsAndContact";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
+    <main className="overflow-x-hidden">
+      <EnhancedHero />
       <About />
-      <ExperienceTimeline />
+      <EnhancedExperience />
+      <EnhancedProjects />
       <ProjectsAndContact />
       <Footer />
     </main>
