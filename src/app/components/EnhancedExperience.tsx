@@ -7,6 +7,10 @@ import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import cafearoma from '../../../public/cafearoma.png'
+import recospace from '../../../public/recospace.png'
+import camphollow from '../../../public/camphollow.jpg'
+import reconocimiento from '../../../public/reconocimiento.png'
 
 const AdvancedBackground = dynamic(() => import("./AdvancedBackground"), { ssr: false })
 const CodeParticles = dynamic(() => import("./CodeParticles"), { ssr: false })
@@ -18,7 +22,7 @@ const timeline = [
     description:
       "Desarrollo del sitio web para Aroma Café. Se trabajó con HTML, CSS y JS puros, brindando una interfaz limpia y funcional para el negocio.",
     tech: ["HTML", "CSS", "JavaScript"],
-    image: "/cafearoma.png",
+    image: cafearoma,
   },
   {
     year: "2024",
@@ -26,7 +30,7 @@ const timeline = [
     description:
       "Participé como mentor oficial, brindando asesoría en UI/UX, comunicación efectiva y estructuración de ideas a equipos multidisciplinarios.",
     tech: ["Mentoría", "UI/UX", "Comunicación"],
-    image: "/recospace.png",
+    image: recospace,
   },
   {
     year: "2024",
@@ -34,7 +38,7 @@ const timeline = [
     description:
       "Diseño completo de un videojuego 3D centrado en exploración y narrativa ambiental. Se aplicaron técnicas de diseño de niveles y ambientación visual.",
     tech: ["Unity", "C#", "Level Design", "Narrativa"],
-    image: "/camphollow.jpg",
+    image: camphollow,
   },
   {
     year: "Actualmente",
@@ -42,7 +46,7 @@ const timeline = [
     description:
       "Ganador de la dinamica de emprendimiento por parte del Tec de Monterrey en el Ludic Jam con un videojuego basado en la cultura rarámuri. Actualmente en desarrollo activo con mi equipo Bosozoku.",
     tech: ["Unity", "Game Design", "Cultura", "Gestión de equipo"],
-    image: "/reconocimiento.png",
+    image: reconocimiento,
   },
 ];
 
@@ -54,7 +58,7 @@ export default function EnhancedExperience() {
   return (
     <section
       id="experiencia"
-      className="relative w-full bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 overflow-hidden transition-colors duration-300"
+      className="relative w-full bg-white dark:bg-black text-black dark:text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 overflow-hidden transition-colors duration-300"
     >
       {/* Fondo avanzado con blobs completos */}
       <AdvancedBackground variant="section" />
@@ -130,6 +134,7 @@ export default function EnhancedExperience() {
                     fill
                     className="object-cover"
                     loading="lazy"
+                    placeholder="blur"
                     sizes="(max-width: 768px) 100vw, 256px"
                   />
                 </div>

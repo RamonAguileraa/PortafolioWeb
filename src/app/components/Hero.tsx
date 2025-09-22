@@ -14,7 +14,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <main className="relative w-full h-screen bg-black text-white overflow-hidden" id="inicio">
+    <main className="relative w-full h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden" id="inicio">
       {/* Fondo avanzado con blobs completos */}
       <AdvancedBackground variant="hero" />
       
@@ -85,8 +85,8 @@ export default function Hero() {
               .
             </p>
             <a
-              href="/CV-Ramon-Aguilera.pdf"
-              download="CV-Ramon-Aguilera.pdf"
+              href="/resume.pdf"
+              download="Ramon-Aguilera-CV.pdf"
               className="mt-8 inline-flex items-center gap-3 px-6 sm:px-8 py-4 border-2 border-pink-500 text-pink-500 font-semibold rounded-lg hover:bg-pink-500 hover:text-black transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

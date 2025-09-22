@@ -2,10 +2,9 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { useState } from 'react'
 
 interface AnimatedImageProps {
-  src: string
+  src: any
   alt: string
   width?: number
   height?: number
@@ -23,14 +22,13 @@ const AnimatedImage = ({
   priority = false,
   sizes 
 }: AnimatedImageProps) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-
   return (
     <motion.div
       className={`relative overflow-hidden ${className}`}
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.95 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <Image
         src={src}
@@ -39,12 +37,8 @@ const AnimatedImage = ({
         height={height}
         priority={priority}
         sizes={sizes}
-        className={`transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        onLoad={() => setIsLoaded(true)}
+        className="object-cover"
         placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
       />
     </motion.div>
   )

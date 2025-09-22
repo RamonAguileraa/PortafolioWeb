@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { Code, Coffee, Heart, Users, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import LiveStats from '../components/LiveStats'
+import yo from '../../../public/yo.png'
 
 const About = () => {
   const ref = useRef(null)
@@ -41,7 +42,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-24 bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black overflow-hidden relative transition-colors duration-300">
+    <section id="about" className="py-24 bg-white dark:bg-black text-black dark:text-white overflow-hidden relative transition-colors duration-300">
       {/* Fondo simple */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-pink-500 blur-[180px] opacity-10" />
@@ -142,13 +143,13 @@ const About = () => {
                 <div className="relative bg-black dark:bg-black light:bg-white p-2 rounded-2xl">
                   <div className="relative overflow-hidden rounded-xl shadow-lg w-full h-96">
                     <Image
-                      src="/yo.png"
+                      src={yo}
                       alt="Ramón Aguilera"
                       fill
                       className="object-cover"
                       priority
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   </div>
                 </div>
@@ -234,7 +235,7 @@ const About = () => {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 export default About

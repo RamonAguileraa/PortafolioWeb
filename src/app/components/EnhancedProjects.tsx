@@ -16,7 +16,7 @@ export default function EnhancedProjects() {
   return (
     <section
       id="proyectos"
-      className="relative w-full bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 overflow-hidden transition-colors duration-300"
+      className="relative w-full bg-white dark:bg-black text-black dark:text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 overflow-hidden transition-colors duration-300"
     >
       {/* Fondo avanzado */}
       <AdvancedBackground variant="section" />

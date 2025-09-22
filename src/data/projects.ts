@@ -1,10 +1,21 @@
+import type { StaticImageData } from 'next/image'
+import zarandeado from '../../public/zarandeado.png'
+import celda27 from '../../public/celda27.jpg'
+import ibenteu from '../../public/IBENTEU.png'
+import enligne from '../../public/enligne.png'
+import cafearoma from '../../public/cafearoma.png'
+import canal28 from '../../public/canal28.jpg'
+import wallorfall from '../../public/wallorfall.jpg'
+import tibucami from '../../public/tibucami.jpg'
+import camphollow from '../../public/camphollow.jpg'
+
 export interface Project {
   id: string
   title: string
   description: string
   category: 'web' | 'mobile' | 'fullstack' | 'design' | 'marketing' | 'videojuegos'
   technologies: string[]
-  image: string
+  image: string | StaticImageData
   githubUrl?: string
   liveUrl?: string
   startDate: string
@@ -20,7 +31,7 @@ export const projects: Project[] = [
     description: 'Propuesta de marketing con un conversor de divisas en PHP y React, utilizando la API de Fixer.',
     category: 'marketing',
     technologies: ['PHP', 'React', 'API Integration', 'Marketing Strategy'],
-    image: '/zarandeado.png',
+    image: zarandeado,
     githubUrl: '#',
     startDate: '2024-01-01',
     endDate: '2024-03-01',
@@ -33,7 +44,7 @@ export const projects: Project[] = [
     description: 'Estrategia de redes sociales que incrementó seguidores en un 200%.',
     category: 'marketing',
     technologies: ['Social Media', 'Marketing Strategy', 'Content Creation'],
-    image: '/celda27.jpg',
+    image: celda27,
     githubUrl: '#',
     startDate: '2023-09-01',
     endDate: '2024-01-01',
@@ -45,7 +56,7 @@ export const projects: Project[] = [
     description: 'Plataforma de reservación de salones con PHP y vanilla JS.',
     category: 'web',
     technologies: ['PHP', 'JavaScript', 'MySQL', 'Bootstrap'],
-    image: '/IBENTEU.png',
+    image: ibenteu,
     githubUrl: 'https://github.com/RamonAguileraa/aroma_cafe',
     liveUrl: '#',
     startDate: '2023-06-01',
@@ -59,7 +70,7 @@ export const projects: Project[] = [
     description: 'Conversor de divisas con PHP y React, integración de API Fixer.',
     category: 'web',
     technologies: ['PHP', 'React', 'API Integration', 'JavaScript'],
-    image: '/enligne.png',
+    image: enligne,
     githubUrl: 'https://github.com/RamonAguileraa/rincondel_grano',
     liveUrl: '#',
     startDate: '2023-04-01',
@@ -72,7 +83,7 @@ export const projects: Project[] = [
     description: 'Sitio web visual para una cafetería ficticia, desarrollado en PHP.',
     category: 'web',
     technologies: ['PHP', 'HTML', 'CSS', 'JavaScript'],
-    image: '/cafearoma.png',
+    image: cafearoma,
     githubUrl: 'https://github.com/RamonAguileraa/aroma_cafe',
     liveUrl: '#',
     startDate: '2023-02-01',
@@ -85,7 +96,7 @@ export const projects: Project[] = [
     description: 'Landing page profesional para cafetería con enfoque UX/UI.',
     category: 'web',
     technologies: ['HTML', 'CSS', 'JavaScript', 'UX/UI Design'],
-    image: '/cafearoma.png',
+    image: cafearoma,
     githubUrl: 'https://github.com/RamonAguileraa/rincondel_grano',
     liveUrl: '#',
     startDate: '2023-01-01',
@@ -98,7 +109,7 @@ export const projects: Project[] = [
     description: 'Sitio informativo para televisora Canal 28.',
     category: 'web',
     technologies: ['PHP', 'MySQL', 'Bootstrap', 'CMS'],
-    image: '/canal28.jpg',
+    image: canal28,
     githubUrl: '#',
     liveUrl: '#',
     startDate: '2022-10-01',
@@ -111,7 +122,7 @@ export const projects: Project[] = [
     description: 'Juego de plataformas 2D desarrollado en Ingeniería.',
     category: 'videojuegos',
     technologies: ['Unity', 'C#', 'Game Development', '2D Graphics'],
-    image: '/wallorfall.jpg',
+    image: wallorfall,
     githubUrl: 'https://github.com/RamonAguileraa/Wall-Or-Fall',
     liveUrl: '#',
     startDate: '2022-08-01',
@@ -125,7 +136,7 @@ export const projects: Project[] = [
     description: 'Ganador en Ludic Jam, videojuego sobre Chihuahua con enfoque cultural.',
     category: 'videojuegos',
     technologies: ['Unity', 'C#', '3D Graphics', 'Cultural Design'],
-    image: '/tibucami.jpg',
+    image: tibucami,
     githubUrl: '#',
     liveUrl: '#',
     startDate: '2024-03-01',
@@ -139,7 +150,7 @@ export const projects: Project[] = [
     description: 'Videojuego 3D estilo aventura con exploración narrativa en campamento.',
     category: 'videojuegos',
     technologies: ['Unity', 'C#', '3D Graphics', 'Narrative Design'],
-    image: '/camphollow.jpg',
+    image: camphollow,
     githubUrl: '#',
     liveUrl: '#',
     startDate: '2023-11-01',

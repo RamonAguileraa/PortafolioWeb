@@ -121,7 +121,7 @@ const MeteoriteLines = memo(() => {
               r="1.5"
               fill="url(#meteoriteGlow)"
               filter="url(#glow)"
-              initial={{ opacity: 0, scale: 0 }}
+              initial={{ opacity: 0, scale: 0, cx: 0, cy: 500 }}
               animate={{
                 opacity: [0, 0.8, 0],
                 scale: [0, 1, 0],
@@ -146,7 +146,7 @@ const MeteoriteLines = memo(() => {
               r="1.5"
               fill="url(#meteoriteGlow)"
               filter="url(#glow)"
-              initial={{ opacity: 0, scale: 0 }}
+              initial={{ opacity: 0, scale: 0, cx: 0, cy: 650 }}
               animate={{
                 opacity: [0, 0.8, 0],
                 scale: [0, 1, 0],

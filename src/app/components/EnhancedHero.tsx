@@ -27,7 +27,7 @@ const EnhancedHero = () => {
   }, [skills.length])
 
   return (
-    <section className="relative min-h-screen bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black overflow-hidden flex items-center transition-colors duration-300">
+    <section className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden flex items-center transition-colors duration-300">
       {/* Líneas meteorito animadas */}
       <MeteoriteLines />
       
@@ -117,8 +117,8 @@ const EnhancedHero = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <a
-                href="/CV-Ramon-Aguilera.pdf"
-                download="CV-Ramon-Aguilera.pdf"
+                href="/resume.pdf"
+                download="Ramon-Aguilera-CV.pdf"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

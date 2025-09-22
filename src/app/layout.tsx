@@ -48,10 +48,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className={`${inter.className} bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black transition-colors duration-300`}>
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{__html: `
+          (function() {
+            try {
+              var saved = localStorage.getItem('theme');
+              var isDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+              var cls = isDark ? 'dark' : 'light';
+              var root = document.documentElement;
+              root.classList.remove('light','dark');
+              root.classList.add(cls);
+            } catch (e) {}
+          })();
+        `}} />
+      </head>
+      <body className={`${inter.className} bg-white dark:bg-black text-black dark:text-white transition-colors duration-300`}>
         <ThemeProvider>
-          <ClientLayout>{children}</ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
         </ThemeProvider>
       </body>
     </html>

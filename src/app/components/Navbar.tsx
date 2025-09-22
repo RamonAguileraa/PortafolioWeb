@@ -15,7 +15,7 @@ const links = [
   { name: "Inicio", href: "#inicio" },
   { name: "Sobre mí", href: "#about" },
   { name: "Experiencia", href: "#experiencia" },
-  { name: "Proyectos", href: "#projects" },
+  { name: "Proyectos", href: "#proyectos" },
   { name: "Contacto", href: "#contacto" },
 ];
 
@@ -38,7 +38,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 w-full z-50 transition-all ${
         scrolled 
-          ? "backdrop-blur-lg bg-black/70 dark:bg-black/70 light:bg-white/70 shadow-lg" 
+          ? "backdrop-blur-lg bg-white/70 dark:bg-black/70 shadow-lg" 
           : "bg-transparent"
       }`}
     >
@@ -53,32 +53,22 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden md:flex gap-8 items-center">
-          {links.map((link, idx) =>
-            link.href.startsWith("/") ? (
-              <Link
-                key={idx}
-                href={link.href}
-                className="text-white dark:text-white light:text-black hover:text-pink-400 transition font-medium"
-              >
-                {link.name}
-              </Link>
-            ) : (
-              <span
-                key={idx}
-                onClick={() => scrollToSection(link.href)}
-                className="cursor-pointer text-white dark:text-white light:text-black hover:text-pink-400 transition font-medium"
-              >
-                {link.name}
-              </span>
-            )
-          )}
+          {links.map((link, idx) => (
+            <span
+              key={idx}
+              onClick={() => scrollToSection(link.href)}
+              className="cursor-pointer text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-400 transition font-medium"
+            >
+              {link.name}
+            </span>
+          ))}
           <ThemeToggle />
         </div>
 
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-4">
           <ThemeToggle />
-          <div className="text-white dark:text-white light:text-black z-50" onClick={() => setIsOpen(!isOpen)}>
+          <div className="text-black dark:text-white z-50" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </div>
         </div>
@@ -86,30 +76,19 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/90 dark:bg-black/90 light:bg-white/90 backdrop-blur-md flex flex-col gap-6 px-6 pb-6 pt-4">
-          {links.map((link, idx) =>
-            link.href.startsWith("/") ? (
-              <Link
-                key={idx}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-white text-lg font-medium hover:text-pink-400 transition"
-              >
-                {link.name}
-              </Link>
-            ) : (
-              <span
-                key={idx}
-                onClick={() => {
-                  scrollToSection(link.href);
-                  setIsOpen(false);
-                }}
-                className="text-white text-lg font-medium hover:text-pink-400 transition"
-              >
-                {link.name}
-              </span>
-            )
-          )}
+        <div className="md:hidden bg-white/90 dark:bg-black/90 backdrop-blur-md flex flex-col gap-6 px-6 pb-6 pt-4">
+          {links.map((link, idx) => (
+            <span
+              key={idx}
+              onClick={() => {
+                scrollToSection(link.href);
+                setIsOpen(false);
+              }}
+              className="text-black dark:text-white text-lg font-medium hover:text-pink-500 dark:hover:text-pink-400 transition"
+            >
+              {link.name}
+            </span>
+          ))}
         </div>
       )}
     </motion.nav>

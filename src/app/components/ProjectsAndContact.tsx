@@ -5,7 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa'
 
 const ProjectsAndContact = () => {
   return (
-    <section id="contacto" className="py-16 sm:py-20 lg:py-24 bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black overflow-hidden relative transition-colors duration-300">
+    <section id="contacto" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-black text-black dark:text-white overflow-hidden relative transition-colors duration-300">
       {/* Fondo simple */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-pink-500 blur-[180px] opacity-10" />
@@ -44,8 +44,8 @@ const ProjectsAndContact = () => {
             </a>
             
             <a
-              href="/CV-Ramon-Aguilera.pdf"
-              download="CV-Ramon-Aguilera.pdf"
+              href="/resume.pdf"
+              download="Ramon-Aguilera-CV.pdf"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-4 text-pink-400 font-semibold border-2 border-pink-500 hover:bg-pink-500 hover:text-black rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
