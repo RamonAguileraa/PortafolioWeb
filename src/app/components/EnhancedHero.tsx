@@ -1,207 +1,146 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import { ChevronDown, Sparkles } from 'lucide-react'
-import dynamic from 'next/dynamic'
-
-const MeteoriteLines = dynamic(() => import('./MeteoriteLines'), { ssr: false })
-const CodeParticles = dynamic(() => import('./CodeParticles'), { ssr: false })
+import Image from 'next/image'
+import { ArrowDown } from 'lucide-react'
 
 const EnhancedHero = () => {
-  const [currentSkill, setCurrentSkill] = useState(0)
-  
-  const skills = [
-    'React Developer',
-    'Next.js Expert', 
-    'TypeScript Pro',
-    'Full Stack Dev',
-    'UI/UX Designer'
-  ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSkill((prev) => (prev + 1) % skills.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [skills.length])
-
   return (
-    <section className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden flex items-center transition-colors duration-300">
-      {/* Líneas meteorito animadas */}
-      <MeteoriteLines />
-      
-      {/* Partículas de código */}
-      <CodeParticles />
+    <section className="relative min-h-screen bg-neutral-950 text-white overflow-hidden flex items-center">
+      {/* Gradient overlay sutil */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-950 to-black" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          
+      {/* Líneas decorativas sutiles */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-white" />
+        <div className="absolute top-0 left-1/2 w-px h-full bg-white" />
+        <div className="absolute top-0 left-3/4 w-px h-full bg-white" />
+      </div>
+
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
           {/* Contenido principal */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="space-y-8 order-2 lg:order-1"
           >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 border border-pink-500/20 rounded-full text-pink-400 text-sm font-medium"
-            >
-              <Sparkles className="h-4 w-4" />
-              Disponible para proyectos
-            </motion.div>
-
-            {/* Título principal */}
+            {/* Nombre y título */}
             <div className="space-y-4">
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-neutral-500 text-sm tracking-[0.3em] uppercase"
               >
-                ¡Hola! Soy{' '}
-                <span className="bg-gradient-to-r from-pink-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
-                  Ramón
-                </span>
-              </motion.h1>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white"
-              >
-                Aguilera
-              </motion.div>
-            </div>
+                Full Stack Developer
+              </motion.p>
 
-            {/* Skill rotatorio */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 text-xl lg:text-2xl text-gray-300"
-            >
-              <span>Desarrollador</span>
-              <motion.span
-                key={currentSkill}
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="bg-gradient-to-r from-pink-400 to-fuchsia-500 bg-clip-text text-transparent font-semibold"
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight"
               >
-                {skills[currentSkill]}
-              </motion.span>
-            </motion.div>
+                Ramón
+                <br />
+                <span className="font-serif italic text-neutral-400">Aguilera</span>
+              </motion.h1>
+            </div>
 
             {/* Descripción */}
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="text-neutral-400 text-lg lg:text-xl leading-relaxed max-w-md"
             >
-              Especializado en crear experiencias digitales excepcionales usando las 
-              tecnologías más modernas. Transformo ideas en realidad a través del código.
+              Creando experiencias digitales excepcionales a través del código y el diseño.
             </motion.p>
 
-            {/* Botones de acción */}
+            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="flex flex-wrap gap-4 pt-4"
             >
-              <a
-                href="/resume.pdf"
-                download="Ramon-Aguilera-CV.pdf"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Descargar CV
-              </a>
-              
               <button
                 onClick={() => {
-                  const projectsSection = document.querySelector('#projects')
+                  const projectsSection = document.querySelector('#selected-work')
                   if (projectsSection) {
                     projectsSection.scrollIntoView({ behavior: 'smooth' })
                   }
                 }}
-                className="inline-flex items-center gap-3 px-8 py-4 border-2 border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-black font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-white text-black text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors duration-300"
               >
-                Ver Proyectos
-                <ChevronDown className="w-5 h-5" />
+                Ver proyectos
+                <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
               </button>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-6 py-3 border border-neutral-700 text-neutral-300 text-sm font-medium tracking-wide hover:border-neutral-500 hover:text-white transition-all duration-300"
+              >
+                Contacto
+              </a>
             </motion.div>
 
-            {/* Stats rápidas */}
+            {/* Stats minimalistas */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="grid grid-cols-3 gap-6 pt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="flex gap-12 pt-8 border-t border-neutral-800"
             >
               {[
-                { number: '3+', label: 'Años' },
+                { number: '3+', label: 'Años experiencia' },
                 { number: '50+', label: 'Proyectos' },
-                { number: '100%', label: 'Satisfacción' }
+                { number: '100%', label: 'Dedicación' }
               ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl font-bold text-pink-400">{stat.number}</div>
-                  <div className="text-sm text-gray-400">{stat.label}</div>
+                <div key={index}>
+                  <div className="text-2xl font-light text-white">{stat.number}</div>
+                  <div className="text-xs text-neutral-500 tracking-wider uppercase mt-1">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Lado derecho - Visual */}
+          {/* Foto */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="relative order-1 lg:order-2"
           >
-            {/* Círculo principal */}
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto">
-              {/* Círculo de fondo con gradiente */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 rounded-full blur-2xl opacity-15" />
-              
-              {/* Círculo principal */}
-              <div className="relative w-full h-full bg-gradient-to-br from-pink-500/10 to-fuchsia-500/10 rounded-full border border-pink-500/20 backdrop-blur-sm flex items-center justify-center">
-                {/* Icono central */}
-                <div className="text-8xl lg:text-9xl">👨‍💻</div>
-                
-                {/* Elementos flotantes */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0"
-                >
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-2 h-2 bg-pink-400 rounded-full"
-                      style={{
-                        top: '50%',
-                        left: '50%',
-                        transform: `rotate(${i * 60}deg) translateY(-120px) translateX(-50%)`
-                      }}
-                    />
-                  ))}
-                </motion.div>
-              </div>
-            </div>
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+              {/* Marco decorativo */}
+              <div className="absolute -inset-4 border border-neutral-800 opacity-50" />
+              <div className="absolute -inset-8 border border-neutral-800/30" />
 
-            {/* Elementos decorativos sutiles */}
-            <div className="absolute -top-10 -right-10 w-20 h-20 bg-pink-500/5 rounded-full blur-xl" />
-            <div className="absolute -bottom-10 -left-10 w-16 h-16 bg-fuchsia-500/5 rounded-full blur-xl" />
+              {/* Imagen */}
+              <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+                <Image
+                  src="/yo.png"
+                  alt="Ramón Aguilera"
+                  fill
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60" />
+              </div>
+
+              {/* Acento rosa sutil */}
+              <motion.div
+                className="absolute -bottom-2 -right-2 w-20 h-20 bg-pink-500/20 blur-2xl"
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+            </div>
           </motion.div>
         </div>
       </div>
@@ -210,19 +149,16 @@ const EnhancedHero = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 1.5 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-pink-500 rounded-full flex justify-center"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2"
         >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-pink-500 rounded-full mt-2"
-          />
+          <span className="text-[10px] text-neutral-600 tracking-[0.2em] uppercase">Scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-neutral-600 to-transparent" />
         </motion.div>
       </motion.div>
     </section>
