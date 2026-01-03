@@ -1,19 +1,23 @@
-import EnhancedHero from "./components/EnhancedHero";
-import EnhancedExperience from "./components/EnhancedExperience";
-import About from "./about/page";
-import Footer from "./components/Footer";
-import EnhancedProjects from "./components/EnhancedProjects";
-import ProjectsAndContact from "./components/ProjectsAndContact";
+import EnhancedHero from './components/EnhancedHero'
+import TechStack from './components/TechStack'
+import Services from './components/Services'
+import SelectedWork from './components/SelectedWork'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
-      <EnhancedHero />
-      <About />
-      <EnhancedExperience />
-      <EnhancedProjects />
-      <ProjectsAndContact />
+    <main className="overflow-x-hidden bg-neutral-950">
+      <section id="inicio">
+        <EnhancedHero />
+      </section>
+      <TechStack />
+      <section id="services">
+        <Services />
+      </section>
+      <SelectedWork />
+      <Contact />
       <Footer />
     </main>
-  );
+  )
 }
