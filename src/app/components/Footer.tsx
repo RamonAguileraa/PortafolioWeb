@@ -1,68 +1,58 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { useScroll, useMotionValueEvent, motion } from "framer-motion";
-import { FaInstagram, FaWhatsapp, FaLinkedin, FaGithub } from "react-icons/fa";
+import { motion } from 'framer-motion'
+import { FaInstagram, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
+
+const socialLinks = [
+  { icon: FaInstagram, href: 'https://www.instagram.com/ramon_aguileraa', label: 'Instagram' },
+  { icon: FaWhatsapp, href: 'https://wa.me/526142283958', label: 'WhatsApp' },
+  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/ramon-aguilera', label: 'LinkedIn' },
+  { icon: FaGithub, href: 'https://github.com/RamonAguileraa', label: 'GitHub' },
+]
 
 export default function Footer() {
-  const { scrollY } = useScroll();
-  const [visible, setVisible] = useState(true);
-  const [lastY, setLastY] = useState(0);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const scrollingUp = latest < lastY;
-    const bottomReached = window.innerHeight + latest >= document.body.scrollHeight - 50;
-
-    setVisible(scrollingUp || latest < 10 || bottomReached);
-    setLastY(latest);
-  });
+  const currentYear = new Date().getFullYear()
 
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 30 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-white/5 backdrop-blur-lg border border-white/10 text-white rounded-full px-6 py-3 flex items-center gap-6 shadow-lg"
-    >
-      <a
-        href="https://www.instagram.com/ramon_aguileraa"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 hover:text-pink-400 transition"
-      >
-        <FaInstagram className="text-xl" />
-        <span className="text-sm hidden sm:inline">Instagram</span>
-      </a>
+    <footer className="bg-neutral-950 border-t border-neutral-900">
+      <div className="container mx-auto px-6 lg:px-12 py-12">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          {/* Marca */}
+          <div>
+            <h3 className="text-xl font-light text-white mb-2">
+              Ramón <span className="font-serif italic text-neutral-500">Aguilera</span>
+            </h3>
+            <p className="text-neutral-600 text-sm">
+              Full Stack Developer
+            </p>
+          </div>
 
-      <a
-        href="https://wa.me/52161422833958?text=Hola%20Ramón%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte%20por%20mensaje."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 hover:text-pink-400 transition"
-      >
-        <FaWhatsapp className="text-xl" />
-        <span className="text-sm hidden sm:inline">WhatsApp (solo mensajes)</span>
-      </a>
+          {/* Redes sociales */}
+          <div className="flex items-center gap-6">
+            {socialLinks.map((link) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -2 }}
+                className="text-neutral-600 hover:text-pink-500 transition-colors"
+                aria-label={link.label}
+              >
+                <link.icon className="w-5 h-5" />
+              </motion.a>
+            ))}
+          </div>
+        </div>
 
-      <a
-        href="https://www.linkedin.com/in/ramon-aguilera"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 hover:text-pink-400 transition"
-      >
-        <FaLinkedin className="text-xl" />
-        <span className="text-sm hidden sm:inline">LinkedIn</span>
-      </a>
-
-      <a
-        href="https://github.com/RamonAguileraa"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 hover:text-pink-400 transition"
-      >
-        <FaGithub className="text-xl" />
-        <span className="text-sm hidden sm:inline">GitHub</span>
-      </a>
-    </motion.footer>
-  );
+        {/* Línea divisoria */}
+        <div className="border-t border-neutral-900 mt-8 pt-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-neutral-600">
+            <p>© {currentYear} Ramón Aguilera. Todos los derechos reservados.</p>
+            <p>Diseñado y desarrollado con pasión.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
 }
