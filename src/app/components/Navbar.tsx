@@ -1,96 +1,130 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
-import ThemeToggle from "./ThemeToggle";
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 
-const scrollToSection = (id: string) => {
-  const el = document.querySelector(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
-const links = [
-  { name: "Inicio", href: "#inicio" },
-  { name: "Sobre mí", href: "#about" },
-  { name: "Experiencia", href: "#experiencia" },
-  { name: "Proyectos", href: "#proyectos" },
-  { name: "Contacto", href: "#contacto" },
-];
+const navLinks = [
+  { name: 'Inicio', href: '#inicio' },
+  { name: 'Servicios', href: '#services' },
+  { name: 'Proyectos', href: '#selected-work' },
+  { name: 'Contacto', href: '#contact' },
+]
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const scrollToSection = (id: string) => {
+    if (id === '#inicio') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      const el = document.querySelector(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    setIsOpen(false)
+  }
 
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all ${
-        scrolled 
-          ? "backdrop-blur-lg bg-white/70 dark:bg-black/70 shadow-lg" 
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo / Nombre */}
-        <span
-          onClick={() => scrollToSection("#inicio")}
-          className="text-xl font-bold bg-gradient-to-r from-pink-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent drop-shadow cursor-pointer"
-        >
-          Ramón Aguilera
-        </span>
-
-        {/* Desktop links */}
-        <div className="hidden md:flex gap-8 items-center">
-          {links.map((link, idx) => (
-            <span
-              key={idx}
-              onClick={() => scrollToSection(link.href)}
-              className="cursor-pointer text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-400 transition font-medium"
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800/50'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <button
+              onClick={() => scrollToSection('#inicio')}
+              className="text-lg font-light text-white tracking-wide"
             >
-              {link.name}
-            </span>
-          ))}
-          <ThemeToggle />
-        </div>
+              Ramón <span className="font-serif italic text-neutral-500">A.</span>
+            </button>
 
-        {/* Mobile controls */}
-        <div className="md:hidden flex items-center gap-4">
-          <ThemeToggle />
-          <div className="text-black dark:text-white z-50" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            {/* Desktop Links */}
+            <div className="hidden md:flex items-center gap-10">
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.href)}
+                  className="text-sm text-neutral-400 hover:text-white transition-colors tracking-wide"
+                >
+                  {link.name}
+                </button>
+              ))}
+              <Link
+                href="/projects"
+                className="ml-4 px-5 py-2 text-sm bg-white text-black hover:bg-neutral-200 transition-colors tracking-wide"
+              >
+                Ver proyectos
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden text-white p-2"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
-      </div>
+      </motion.nav>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white/90 dark:bg-black/90 backdrop-blur-md flex flex-col gap-6 px-6 pb-6 pt-4">
-          {links.map((link, idx) => (
-            <span
-              key={idx}
-              onClick={() => {
-                scrollToSection(link.href);
-                setIsOpen(false);
-              }}
-              className="text-black dark:text-white text-lg font-medium hover:text-pink-500 dark:hover:text-pink-400 transition"
-            >
-              {link.name}
-            </span>
-          ))}
-        </div>
-      )}
-    </motion.nav>
-  );
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-neutral-950 md:hidden"
+          >
+            <div className="flex flex-col items-center justify-center h-full gap-8">
+              {navLinks.map((link, index) => (
+                <motion.button
+                  key={link.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => scrollToSection(link.href)}
+                  className="text-2xl font-light text-white hover:text-pink-400 transition-colors"
+                >
+                  {link.name}
+                </motion.button>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Link
+                  href="/projects"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-4 px-8 py-3 bg-white text-black text-sm tracking-wide"
+                >
+                  Ver todos los proyectos
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
 }
