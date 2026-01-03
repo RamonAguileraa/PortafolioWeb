@@ -1,10 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 
 interface AnimatedImageProps {
-  src: any
+  src: string | StaticImageData
   alt: string
   width?: number
   height?: number
