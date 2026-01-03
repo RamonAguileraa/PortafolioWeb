@@ -146,9 +146,11 @@ const About = () => {
                     src="/yo.png"
                     alt="Ramón Aguilera"
                     fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    className="object-cover object-top transition-all duration-700"
                     priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={100}
+                    sizes="(max-width: 768px) 400px, 500px"
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60" />
                 </div>
