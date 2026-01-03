@@ -1,73 +1,64 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
-import ClientLayout from "./components/ClientLayout";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import './globals.css'
+import { Inter, Playfair_Display } from 'next/font/google'
+import Navbar from './components/Navbar'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter'
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair'
+})
 
 export const metadata = {
-  title: "Ramon Aguilera | Portafolio",
-  description: "Portafolio profesional de Ramon Aguilera, desarrollador fullstack.",
+  title: 'Ramón Aguilera | Full Stack Developer',
+  description: 'Portafolio profesional de Ramón Aguilera. Desarrollo web, aplicaciones móviles, UI/UX y marketing digital.',
   keywords: [
-    "Ramon Aguilera",
-    "portafolio",
-    "desarrollador web",
-    "fullstack",
-    "Next.js",
-    "Tailwind CSS",
-    "TypeScript",
-    "UI/UX",
-    "proyectos",
-    "Chihuahua"
+    'Ramón Aguilera',
+    'portafolio',
+    'desarrollador web',
+    'fullstack',
+    'Next.js',
+    'React',
+    'TypeScript',
+    'UI/UX',
+    'Chihuahua',
+    'México'
   ],
-  authors: [{ name: "Ramon Aguilera", url: "https://github.com/RamonAguileraa" }],
-  creator: "Ramon Aguilera",
+  authors: [{ name: 'Ramón Aguilera', url: 'https://github.com/RamonAguileraa' }],
+  creator: 'Ramón Aguilera',
   openGraph: {
-    title: "Ramon Aguilera | Portafolio",
-    description: "Desarrollador web fullstack enfocado en experiencias visuales con Next.js.",
-    url: "https://tu-dominio.com",
-    siteName: "Portafolio de Ramon Aguilera",
-    locale: "es_MX",
-    type: "website",
+    title: 'Ramón Aguilera | Full Stack Developer',
+    description: 'Creando experiencias digitales excepcionales a través del código y el diseño.',
+    url: 'https://ramonaguilera.dev',
+    siteName: 'Ramón Aguilera',
+    locale: 'es_MX',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Ramon Aguilera | Portafolio",
-    description: "Portafolio profesional como desarrollador fullstack.",
-    creator: "@tu_usuario",
+    card: 'summary_large_image',
+    title: 'Ramón Aguilera | Full Stack Developer',
+    description: 'Creando experiencias digitales excepcionales a través del código y el diseño.',
   },
-};
+}
 
 export const viewport = {
-  themeColor: "#000000",
-};
+  themeColor: '#0a0a0a',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{__html: `
-          (function() {
-            try {
-              var saved = localStorage.getItem('theme');
-              var isDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-              var cls = isDark ? 'dark' : 'light';
-              var root = document.documentElement;
-              root.classList.remove('light','dark');
-              root.classList.add(cls);
-            } catch (e) {}
-          })();
-        `}} />
-      </head>
-      <body className={`${inter.className} bg-white dark:bg-black text-black dark:text-white transition-colors duration-300`}>
-        <ThemeProvider>
-        <ClientLayout>{children}</ClientLayout>
-        </ThemeProvider>
+    <html lang="es" className="dark">
+      <body className={`${inter.variable} ${playfair.variable} font-sans bg-neutral-950 text-white antialiased`}>
+        <Navbar />
+        {children}
       </body>
     </html>
-  );
+  )
 }
