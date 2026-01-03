@@ -3,175 +3,177 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
-import { projects } from '../../data/projects'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
-import dynamic from 'next/dynamic'
-
-const AdvancedBackground = dynamic(() => import('../components/AdvancedBackground'), { ssr: false })
-const CodeParticles = dynamic(() => import('../components/CodeParticles'), { ssr: false })
+import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react'
+import { projects } from '../../data/projects'
+import Footer from '../components/Footer'
 
 const categories = [
-  { id: "all", label: "Todos", icon: "🎯" },
-  { id: "web", label: "Web", icon: "🌐" },
-  { id: "videojuegos", label: "Videojuegos", icon: "🎮" },
-  { id: "marketing", label: "Marketing", icon: "📈" },
+  { id: 'all', label: 'Todos' },
+  { id: 'web', label: 'Web' },
+  { id: 'mobile', label: 'Mobile' },
+  { id: 'videojuegos', label: 'Videojuegos' },
+  { id: 'marketing', label: 'Marketing' },
 ]
 
 export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [selectedCategory, setSelectedCategory] = useState('all')
 
   const filteredProjects = projects.filter(
-    (project) => selectedCategory === "all" || project.category === selectedCategory
+    (project) => selectedCategory === 'all' || project.category === selectedCategory
   )
 
   return (
-    <div className="min-h-screen bg-black dark:bg-black light:bg-white text-white dark:text-white light:text-black transition-colors duration-300">
+    <div className="min-h-screen bg-neutral-950 pt-20">
       {/* Header */}
-      <section className="relative py-24 px-6 md:px-12 overflow-hidden">
-        <AdvancedBackground variant="section" />
-        <CodeParticles />
-        
-        <div className="relative z-10 max-w-6xl mx-auto">
+      <section className="py-16 lg:py-24 px-6 lg:px-12">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
           >
-            <Link 
+            <Link
               href="/"
-              className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-neutral-500 hover:text-white transition-colors mb-12"
             >
-              <ArrowLeft className="h-4 w-4" />
-              Volver al inicio
+              <ArrowLeft className="w-4 h-4" />
+              <span className="text-sm tracking-wide">Volver al inicio</span>
             </Link>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-pink-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
-                Todos mis proyectos
-              </span>
-            </h1>
-            
-            <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
-              Una colección completa de mis trabajos, desde desarrollo web hasta videojuegos y estrategias de marketing.
-            </p>
+
+            <div className="max-w-2xl mb-16">
+              <p className="text-pink-500 text-xs tracking-[0.3em] uppercase mb-4">
+                Portafolio completo
+              </p>
+              <h1 className="text-4xl lg:text-6xl font-light text-white mb-6">
+                Todos los <span className="font-serif italic text-neutral-400">proyectos</span>
+              </h1>
+              <p className="text-neutral-400 text-lg">
+                Una colección de mis trabajos en desarrollo web, aplicaciones móviles, videojuegos y marketing digital.
+              </p>
+            </div>
+
+            {/* Filtros */}
+            <div className="flex flex-wrap gap-3 mb-16">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`px-5 py-2 text-sm tracking-wide transition-all duration-300 ${
+                    selectedCategory === category.id
+                      ? 'bg-white text-black'
+                      : 'bg-transparent text-neutral-500 hover:text-white border border-neutral-800 hover:border-neutral-600'
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Filtros */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-                  selectedCategory === category.id
-                    ? "bg-pink-500 text-black"
-                    : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
-                }`}
-              >
-                <span className="mr-2">{category.icon}</span>
-                {category.label}
-              </button>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Proyectos */}
-      <section className="py-12 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
+          {/* Grid de proyectos */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredProjects.map((project, idx) => (
-              <motion.div
+              <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden hover:border-pink-500/50 transition-all duration-300 hover:scale-105"
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="group"
               >
-                <div className="relative h-48 overflow-hidden">
+                {/* Imagen */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900 mb-5">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    loading="lazy"
+                    className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Categoría */}
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 text-xs font-semibold bg-pink-500 text-black rounded-full">
+                    <span className="px-3 py-1 text-[10px] tracking-wider uppercase bg-black/50 backdrop-blur-sm text-white border border-white/20">
                       {project.category}
                     </span>
                   </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-lg font-semibold text-white mb-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-gray-300 line-clamp-2">
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 4).map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 text-xs border border-pink-500/30 text-pink-400 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-2 py-1 text-xs text-gray-400">
-                        +{project.technologies.length - 4} más
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    {project.githubUrl && project.githubUrl !== "#" && (
+
+                  {/* Botones en hover */}
+                  <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {project.githubUrl && project.githubUrl !== '#' && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-black rounded-lg transition-all duration-200"
+                        className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all"
                       >
-                        <Github className="h-4 w-4" />
-                        GitHub
+                        <Github className="w-5 h-5" />
                       </a>
                     )}
-                    {project.liveUrl && project.liveUrl !== "#" && (
+                    {project.liveUrl && project.liveUrl !== '#' && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm bg-pink-500 text-black hover:bg-pink-400 rounded-lg transition-all duration-200"
+                        className="w-12 h-12 bg-white flex items-center justify-center text-black hover:bg-pink-500 transition-all"
                       >
-                        <ExternalLink className="h-4 w-4" />
-                        Ver proyecto
+                        <ArrowUpRight className="w-5 h-5" />
                       </a>
                     )}
                   </div>
                 </div>
-              </motion.div>
+
+                {/* Contenido */}
+                <div className="space-y-3">
+                  <h3 className="text-xl font-light text-white group-hover:text-pink-50 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-neutral-500 text-sm leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tecnologías */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.technologies.slice(0, 3).map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-[10px] text-neutral-600 tracking-wider uppercase"
+                      >
+                        {tech}
+                        {i < 2 && project.technologies.length > 1 && <span className="ml-2">•</span>}
+                      </span>
+                    ))}
+                    {project.technologies.length > 3 && (
+                      <span className="text-[10px] text-neutral-700">
+                        +{project.technologies.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </motion.article>
             ))}
           </motion.div>
+
+          {/* Mensaje si no hay proyectos */}
+          {filteredProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
+            >
+              <p className="text-neutral-500">No hay proyectos en esta categoría.</p>
+            </motion.div>
+          )}
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }
