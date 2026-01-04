@@ -147,5 +147,19 @@ export const projects: Project[] = [
     startDate: '2023-11-01',
     endDate: '2024-01-01',
     status: 'completed'
+  },
+  {
+    id: 'wonder-wagons',
+    title: 'Wonder Wagons',
+    description: 'Videojuego de carreras con mecánicas únicas y diseño visual colorido.',
+    category: 'videojuegos',
+    technologies: ['Unity', 'C#', '3D Graphics', 'Game Design'],
+    image: '/WonderWagons.png',
+    githubUrl: '#',
+    liveUrl: '#',
+    startDate: '2024-01-01',
+    endDate: '2024-03-01',
+    status: 'completed',
+    featured: true
   }
 ]
