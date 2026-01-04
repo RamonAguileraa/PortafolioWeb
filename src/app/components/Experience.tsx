@@ -119,22 +119,32 @@ const mentorship = [
 const startups = [
   {
     name: 'Serena',
+    logo: '/serena.jpg',
     type: 'PWA - Salud Reproductiva',
     description: 'App para el cuidado de la salud reproductiva femenina. Proyecto integrador reconocido por empresarios con múltiples propuestas.',
     status: 'En desarrollo'
   },
   {
     name: 'PetKeeper',
+    logo: '/PetKeeperquitarfondo.png',
     type: 'Startup - Mascotas',
     description: 'Aplicación para gestión de mascotas iniciada en la Escuelita Maker de Chihuahua.',
     status: 'En desarrollo'
   },
   {
     name: 'BosoZoku Studio',
+    logo: '/Bosozoku.jpg',
     type: 'Videojuegos Indie',
     description: 'Empresa de videojuegos indie. Ganadores de beca 100% en emprendimiento en Ludic Jam (Tec de Monterrey).',
     status: 'Activo',
     highlight: 'Ganadores Ludic Jam'
+  },
+  {
+    name: 'IBENTEU',
+    logo: '/IBENTEU-app.png',
+    type: 'App Móvil',
+    description: 'Aplicación móvil desarrollada como proyecto de software.',
+    status: 'Finalizado'
   }
 ]
 
@@ -383,15 +393,29 @@ export default function Experience() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-neutral-950 p-5 border border-neutral-800 hover:border-pink-500/30 transition-colors group"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <h4 className="text-white font-light group-hover:text-pink-50 transition-colors">{startup.name}</h4>
-                  {startup.highlight && (
-                    <span className="px-2 py-0.5 text-[9px] bg-pink-500/20 text-pink-400 rounded whitespace-nowrap">
-                      {startup.highlight}
-                    </span>
+                <div className="flex items-start gap-3 mb-3">
+                  {startup.logo && (
+                    <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-neutral-900 flex-shrink-0">
+                      <Image
+                        src={startup.logo}
+                        alt={startup.name}
+                        fill
+                        className="object-contain p-1"
+                      />
+                    </div>
                   )}
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between">
+                      <h4 className="text-white font-light group-hover:text-pink-50 transition-colors">{startup.name}</h4>
+                      {startup.highlight && (
+                        <span className="px-2 py-0.5 text-[9px] bg-pink-500/20 text-pink-400 rounded whitespace-nowrap">
+                          {startup.highlight}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-pink-400/70 text-xs uppercase tracking-wider">{startup.type}</p>
+                  </div>
                 </div>
-                <p className="text-pink-400/70 text-xs uppercase tracking-wider mb-2">{startup.type}</p>
                 <p className="text-neutral-500 text-sm leading-relaxed">{startup.description}</p>
                 <div className="mt-3 pt-3 border-t border-neutral-800">
                   <span className="text-[10px] text-neutral-600 uppercase tracking-wider">{startup.status}</span>
