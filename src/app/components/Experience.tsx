@@ -1,7 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Briefcase, Calendar, MapPin, ExternalLink, Award, Users, Rocket } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Briefcase, Calendar, MapPin, ExternalLink, Award, Users, Rocket, X, ImageIcon } from 'lucide-react'
+import Image from 'next/image'
 
 const workExperience = [
   {
@@ -65,11 +67,12 @@ const leadership = [
     organization: 'Universidad Tecnológica de Chihuahua',
     period: '2024 - Presente',
     highlights: [
-      'Organización de eventos en Chihuahua Tech Week 2025',
-      'Eventos de Blockchain con Ethereum México',
-      'Colaboración con comunidad AWS',
-      'Llevé 8 alumnos a Ethereum México Monterrey - 2do lugar en Hackathon',
-      'Representante del Machaca Valley en Monterrey Tech Week'
+      'Colaboramos en la organización de Chihuahua Tech Week 2025',
+      'Organizamos eventos de Blockchain junto a Ethereum México',
+      'Trabajamos de la mano con la comunidad AWS',
+      'Viajamos con 8 compañeros a Ethereum México Monterrey, donde obtuvimos el 2do lugar en el Hackathon',
+      'Representamos al Machaca Valley en Monterrey Tech Week',
+      'Lideré al equipo BosoZoku Studio hasta ganar la beca del 100% en emprendimiento en Ludic Jam'
     ]
   }
 ]
@@ -79,20 +82,23 @@ const mentorship = [
     event: 'NASA Space Apps Challenge',
     location: 'Chihuahua',
     years: ['2023', '2024'],
-    role: 'Mentor'
+    role: 'Mentor',
+    images: ['/recospace.png', '/recospace2.png']
   },
   {
     event: 'MIT Workshop Challenge',
     location: 'Tec de Monterrey',
     years: ['2024'],
-    role: 'Mentor'
+    role: 'Mentor',
+    images: ['/mentor.png']
   },
   {
     event: 'AIM 2025 - Artificial Intelligence Mexico',
     location: 'Chihuahua',
     years: ['2025'],
     role: 'Invitado por Startup Chihuahua',
-    description: 'Primer evento internacional de IA en Chihuahua'
+    description: 'Primer evento internacional de IA en Chihuahua',
+    images: ['/reconocimiento.png']
   }
 ]
 
@@ -119,6 +125,8 @@ const startups = [
 ]
 
 export default function Experience() {
+  const [selectedEvent, setSelectedEvent] = useState<{ event: string; images: string[] } | null>(null)
+
   return (
     <section id="experience" className="relative py-16 sm:py-20 lg:py-32 bg-neutral-900">
       <div className="container mx-auto px-5 sm:px-6 lg:px-12">
@@ -283,9 +291,15 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-neutral-950 p-5 border border-neutral-800 hover:border-neutral-700 transition-colors"
+                onClick={() => item.images && setSelectedEvent({ event: item.event, images: item.images })}
+                className={`bg-neutral-950 p-5 border border-neutral-800 hover:border-neutral-700 transition-colors ${item.images ? 'cursor-pointer group' : ''}`}
               >
-                <h4 className="text-white font-light mb-1">{item.event}</h4>
+                <div className="flex items-start justify-between">
+                  <h4 className="text-white font-light mb-1">{item.event}</h4>
+                  {item.images && (
+                    <ImageIcon className="w-4 h-4 text-neutral-600 group-hover:text-pink-400 transition-colors" />
+                  )}
+                </div>
                 <p className="text-neutral-500 text-sm mb-2">{item.location}</p>
                 <div className="flex flex-wrap gap-2 mb-2">
                   {item.years.map((year, i) => (
@@ -297,6 +311,9 @@ export default function Experience() {
                 <p className="text-pink-400 text-sm">{item.role}</p>
                 {item.description && (
                   <p className="text-neutral-600 text-xs mt-1">{item.description}</p>
+                )}
+                {item.images && (
+                  <p className="text-neutral-700 text-[10px] mt-2 group-hover:text-neutral-500 transition-colors">Click para ver reconocimientos</p>
                 )}
               </motion.div>
             ))}
@@ -344,6 +361,50 @@ export default function Experience() {
         </div>
 
       </div>
+
+      {/* Modal de reconocimientos */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setSelectedEvent(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-neutral-950 border border-neutral-800 p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedEvent(null)}
+                className="absolute top-4 right-4 text-neutral-400 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <h3 className="text-xl font-light text-white mb-6">{selectedEvent.event}</h3>
+
+              <div className={`grid gap-4 ${selectedEvent.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
+                {selectedEvent.images.map((img, i) => (
+                  <div key={i} className="relative aspect-[4/3] bg-neutral-900 overflow-hidden">
+                    <Image
+                      src={img}
+                      alt={`Reconocimiento ${i + 1}`}
+                      fill
+                      className="object-contain"
+                      quality={100}
+                    />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
