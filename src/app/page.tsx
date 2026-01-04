@@ -2,6 +2,7 @@ import EnhancedHero from './components/EnhancedHero'
 import TechStack from './components/TechStack'
 import Services from './components/Services'
 import SelectedWork from './components/SelectedWork'
+import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -16,6 +17,7 @@ export default function Home() {
         <Services />
       </section>
       <SelectedWork />
+      <Experience />
       <Contact />
       <Footer />
     </main>
