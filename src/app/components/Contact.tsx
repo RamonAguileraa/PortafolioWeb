@@ -14,7 +14,7 @@ const socialLinks = [
   {
     icon: FaLinkedin,
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/ramon-aguilera',
+    href: 'https://www.linkedin.com/in/ramón-aguilera-95a2732a9',
     description: 'Conectemos'
   },
   {
@@ -77,11 +77,11 @@ export default function Contact() {
             className="text-center mb-10 sm:mb-16"
           >
             <a
-              href="mailto:ramon.aguilera.dev@gmail.com"
+              href="mailto:ramonaguileradve@gmail.com"
               className="group inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-lg sm:text-2xl lg:text-4xl font-light text-white hover:text-pink-400 transition-colors"
             >
               <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-neutral-600 group-hover:text-pink-500 transition-colors" />
-              <span className="break-all sm:break-normal">ramon.aguilera.dev@gmail.com</span>
+              <span className="break-all sm:break-normal">ramonaguileradve@gmail.com</span>
             </a>
           </motion.div>
 
