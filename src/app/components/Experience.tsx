@@ -9,6 +9,7 @@ const workExperience = [
   {
     role: 'Full Stack Developer',
     company: 'Vendex.mx',
+    logo: '/vendex.png',
     location: 'Chihuahua, México',
     period: 'Oct 2024 - Presente',
     current: true,
@@ -25,6 +26,7 @@ const workExperience = [
   {
     role: 'Fundador & Director Creativo',
     company: 'Studioko',
+    logo: '/studioko.png',
     location: 'Chihuahua, México',
     period: '2024 - Presente',
     current: true,
@@ -39,6 +41,7 @@ const workExperience = [
   {
     role: 'Full Stack Developer',
     company: 'Canal 28 Chihuahua',
+    logo: '/canal 28.webp',
     location: 'Chihuahua, México',
     period: 'Ene 2023 - May 2023',
     description: [
@@ -50,7 +53,8 @@ const workExperience = [
   },
   {
     role: 'Frontend Developer - Web3',
-    company: 'Aplicaciones Descentralizadas',
+    company: 'TheZenCorp',
+    logo: '/thezen.jpg',
     location: 'Remoto',
     period: 'Ene 2023 - May 2023',
     description: [
@@ -65,14 +69,24 @@ const leadership = [
   {
     role: 'Líder del Club de Programación',
     organization: 'Universidad Tecnológica de Chihuahua',
+    logo: '/utch.png',
     period: '2024 - Presente',
     highlights: [
       'Colaboramos en la organización de Chihuahua Tech Week 2025',
       'Organizamos eventos de Blockchain junto a Ethereum México',
       'Trabajamos de la mano con la comunidad AWS',
-      'Viajamos con 8 compañeros a Ethereum México Monterrey, donde obtuvimos el 2do lugar en el Hackathon',
-      'Representamos al Machaca Valley en Monterrey Tech Week',
-      'Lideré al equipo BosoZoku Studio hasta ganar la beca del 100% en emprendimiento en Ludic Jam'
+      'Viajamos con 8 compañeros a Ethereum México Monterrey',
+      'Representamos al Machaca Valley en Monterrey Tech Week'
+    ]
+  },
+  {
+    role: 'Líder de Equipo',
+    organization: 'BosoZoku Studio',
+    logo: '/Bosozoku.jpg',
+    period: '2024',
+    highlights: [
+      'Lideré al equipo de desarrollo de videojuegos indie',
+      'Ganamos la beca del 100% en emprendimiento en Ludic Jam (Tec de Monterrey)'
     ]
   }
 ]
@@ -179,26 +193,38 @@ export default function Experience() {
 
                 <div className="bg-neutral-950 p-5 sm:p-6 border border-neutral-800 hover:border-neutral-700 transition-colors">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                    <div>
-                      <h4 className="text-lg sm:text-xl font-light text-white">{job.role}</h4>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
-                        {job.link ? (
-                          <a
-                            href={job.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-pink-400 hover:text-pink-300 transition-colors flex items-center gap-1"
-                          >
-                            {job.company}
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        ) : (
-                          <span className="text-neutral-400">{job.company}</span>
-                        )}
-                        <span className="text-neutral-600 text-sm flex items-center gap-1">
-                          <MapPin className="w-3 h-3" />
-                          {job.location}
-                        </span>
+                    <div className="flex items-start gap-3">
+                      {job.logo && (
+                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden bg-neutral-900 flex-shrink-0">
+                          <Image
+                            src={job.logo}
+                            alt={job.company}
+                            fill
+                            className="object-contain p-1"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <h4 className="text-lg sm:text-xl font-light text-white">{job.role}</h4>
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
+                          {job.link ? (
+                            <a
+                              href={job.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-pink-400 hover:text-pink-300 transition-colors flex items-center gap-1"
+                            >
+                              {job.company}
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          ) : (
+                            <span className="text-neutral-400">{job.company}</span>
+                          )}
+                          <span className="text-neutral-600 text-sm flex items-center gap-1">
+                            <MapPin className="w-3 h-3" />
+                            {job.location}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-neutral-500">
@@ -244,31 +270,46 @@ export default function Experience() {
             Liderazgo & Comunidad
           </motion.h3>
 
-          {leadership.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-neutral-950 p-5 sm:p-6 border border-neutral-800"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-                <div>
-                  <h4 className="text-lg sm:text-xl font-light text-white">{item.role}</h4>
-                  <p className="text-neutral-400">{item.organization}</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {leadership.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-neutral-950 p-5 sm:p-6 border border-neutral-800 hover:border-neutral-700 transition-colors"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                  <div className="flex items-start gap-3">
+                    {item.logo && (
+                      <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden bg-neutral-900 flex-shrink-0">
+                        <Image
+                          src={item.logo}
+                          alt={item.organization}
+                          fill
+                          className="object-contain p-1"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h4 className="text-lg sm:text-xl font-light text-white">{item.role}</h4>
+                      <p className="text-neutral-400 text-sm">{item.organization}</p>
+                    </div>
+                  </div>
+                  <span className="text-xs text-neutral-500 whitespace-nowrap">{item.period}</span>
                 </div>
-                <span className="text-sm text-neutral-500">{item.period}</span>
-              </div>
-              <ul className="space-y-2">
-                {item.highlights.map((highlight, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-neutral-400">
-                    <span className="text-pink-500 mt-0.5">→</span>
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+                <ul className="space-y-2">
+                  {item.highlights.map((highlight, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-neutral-400">
+                      <span className="text-pink-500 mt-0.5">→</span>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Mentorship & Events */}
