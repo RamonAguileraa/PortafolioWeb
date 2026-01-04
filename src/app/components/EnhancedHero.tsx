@@ -53,7 +53,7 @@ const EnhancedHero = () => {
                     transition={{ delay: 0.2, duration: 0.6 }}
                     className="text-neutral-500 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase"
                   >
-                    Full Stack Developer
+                    Ing. en Tecnologías de la Información • Full Stack Developer
                   </motion.p>
 
                   <motion.h1
