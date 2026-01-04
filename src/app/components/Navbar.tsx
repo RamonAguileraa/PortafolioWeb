@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
@@ -16,6 +17,8 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -24,13 +27,20 @@ export default function Navbar() {
   }, [])
 
   const scrollToSection = (id: string) => {
+    setIsOpen(false)
+
+    // If not on home page, navigate to home with hash
+    if (pathname !== '/') {
+      router.push('/' + id)
+      return
+    }
+
     if (id === '#inicio') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       const el = document.querySelector(id)
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
-    setIsOpen(false)
   }
 
   return (
