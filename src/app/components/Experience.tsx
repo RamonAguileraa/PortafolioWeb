@@ -95,9 +95,9 @@ const mentorship = [
   {
     event: 'NASA Space Apps Challenge',
     location: 'Chihuahua',
-    years: ['2023', '2024'],
+    years: ['2023', '2024', '2025'],
     role: 'Mentor',
-    images: ['/recospace.png', '/recospace2.png']
+    images: ['/recospace.png', '/recospace2.png', '/spaceapps2025.pdf', '/spaceapps2025.2.pdf']
   },
   {
     event: 'MIT Workshop Challenge',
@@ -455,14 +455,26 @@ export default function Experience() {
 
               <div className={`grid gap-4 ${selectedEvent.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
                 {selectedEvent.images.map((img, i) => (
-                  <div key={i} className="relative aspect-[4/3] bg-neutral-900 overflow-hidden">
-                    <Image
-                      src={img}
-                      alt={`Reconocimiento ${i + 1}`}
-                      fill
-                      className="object-contain"
-                      quality={100}
-                    />
+                  <div key={i} className="relative bg-neutral-900 overflow-hidden">
+                    {img.endsWith('.pdf') ? (
+                      <div className="aspect-[4/3] flex flex-col items-center justify-center gap-4">
+                        <iframe
+                          src={img}
+                          className="w-full h-full absolute inset-0"
+                          title={`Documento ${i + 1}`}
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative aspect-[4/3]">
+                        <Image
+                          src={img}
+                          alt={`Reconocimiento ${i + 1}`}
+                          fill
+                          className="object-contain"
+                          quality={100}
+                        />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
