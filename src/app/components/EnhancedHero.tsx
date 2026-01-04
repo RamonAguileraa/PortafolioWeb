@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowDown } from 'lucide-react'
+import { ArrowDown, Download } from 'lucide-react'
 
 const EnhancedHero = () => {
   return (
@@ -103,6 +103,15 @@ const EnhancedHero = () => {
                     className="inline-flex items-center justify-center gap-3 px-6 py-3.5 border border-neutral-700 text-neutral-300 text-sm font-medium tracking-wide hover:border-neutral-500 hover:text-white transition-all duration-300"
                   >
                     Contacto
+                  </a>
+
+                  <a
+                    href="/resume.pdf"
+                    download="Ramon-Aguilera-CV.pdf"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-pink-500/30 text-pink-400 text-sm font-medium tracking-wide hover:border-pink-500 hover:bg-pink-500/10 transition-all duration-300"
+                  >
+                    <Download className="w-4 h-4" />
+                    Descargar CV
                   </a>
                 </motion.div>
 
