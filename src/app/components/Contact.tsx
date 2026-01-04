@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaWhatsapp, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
 import { ArrowUpRight, Mail } from 'lucide-react'
+import { useTheme } from '../../context/ThemeContext'
 
 const socialLinks = [
   {
@@ -32,8 +33,10 @@ const socialLinks = [
 ]
 
 export default function Contact() {
+  const { theme } = useTheme()
+
   return (
-    <section id="contact" className="relative py-16 sm:py-20 lg:py-32 bg-neutral-900">
+    <section id="contact" className={`relative py-16 sm:py-20 lg:py-32 ${theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-50'}`}>
       <div className="container mx-auto px-5 sm:px-6 lg:px-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -51,18 +54,18 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light text-white mb-4 sm:mb-6"
+              className={`text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light mb-4 sm:mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
             >
               ¿Tienes un proyecto
               <br />
-              <span className="font-serif italic text-neutral-400">en mente?</span>
+              <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>en mente?</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-neutral-400 text-base sm:text-lg max-w-xl mx-auto"
+              className={`text-base sm:text-lg max-w-xl mx-auto ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}
             >
               Estoy disponible para colaboraciones, proyectos freelance y oportunidades laborales.
             </motion.p>
@@ -78,9 +81,9 @@ export default function Contact() {
           >
             <a
               href="mailto:ramonaguileradve@gmail.com"
-              className="group inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-lg sm:text-2xl lg:text-4xl font-light text-white hover:text-pink-400 transition-colors"
+              className={`group inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-lg sm:text-2xl lg:text-4xl font-light hover:text-pink-400 transition-colors ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
             >
-              <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-neutral-600 group-hover:text-pink-500 transition-colors" />
+              <Mail className={`w-6 h-6 sm:w-8 sm:h-8 group-hover:text-pink-500 transition-colors ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-400'}`} />
               <span className="break-all sm:break-normal">ramonaguileradve@gmail.com</span>
             </a>
           </motion.div>
@@ -97,11 +100,11 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + index * 0.08 }}
-                className="group p-4 sm:p-6 bg-neutral-950 border border-neutral-800 hover:border-neutral-700 transition-all duration-300"
+                className={`group p-4 sm:p-6 border transition-all duration-300 ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-neutral-700' : 'bg-white border-neutral-200 hover:border-neutral-300'}`}
               >
-                <link.icon className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-500 group-hover:text-pink-500 transition-colors mb-3 sm:mb-4" />
-                <h3 className="text-white font-light text-sm sm:text-base mb-0.5 sm:mb-1">{link.label}</h3>
-                <p className="text-neutral-600 text-xs sm:text-sm">{link.description}</p>
+                <link.icon className={`w-5 h-5 sm:w-6 sm:h-6 group-hover:text-pink-500 transition-colors mb-3 sm:mb-4 ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-400'}`} />
+                <h3 className={`font-light text-sm sm:text-base mb-0.5 sm:mb-1 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>{link.label}</h3>
+                <p className={`text-xs sm:text-sm ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>{link.description}</p>
               </motion.a>
             ))}
           </div>
@@ -117,7 +120,7 @@ export default function Contact() {
             <a
               href="/resume.pdf"
               download="Ramon-Aguilera-CV.pdf"
-              className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border border-neutral-700 text-neutral-300 text-sm font-medium tracking-wide hover:border-pink-500 hover:text-pink-400 transition-all duration-300"
+              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border text-sm font-medium tracking-wide hover:border-pink-500 hover:text-pink-400 transition-all duration-300 ${theme === 'dark' ? 'border-neutral-700 text-neutral-300' : 'border-neutral-300 text-neutral-600'}`}
             >
               Descargar CV
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

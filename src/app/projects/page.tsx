@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react'
 import { projects } from '../../data/projects'
 import Footer from '../components/Footer'
+import { useTheme } from '../../context/ThemeContext'
 
 const categories = [
   { id: 'all', label: 'Todos' },
@@ -18,13 +19,14 @@ const categories = [
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const { theme } = useTheme()
 
   const filteredProjects = projects.filter(
     (project) => selectedCategory === 'all' || project.category === selectedCategory
   )
 
   return (
-    <div className="min-h-screen bg-neutral-950 pt-20">
+    <div className={`min-h-screen pt-20 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-white'}`}>
       {/* Header */}
       <section className="py-16 lg:py-24 px-6 lg:px-12">
         <div className="container mx-auto max-w-7xl">
@@ -35,7 +37,7 @@ export default function ProjectsPage() {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-neutral-500 hover:text-white transition-colors mb-12"
+              className={`inline-flex items-center gap-2 transition-colors mb-12 ${theme === 'dark' ? 'text-neutral-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`}
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="text-sm tracking-wide">Volver al inicio</span>
@@ -45,10 +47,10 @@ export default function ProjectsPage() {
               <p className="text-pink-500 text-xs tracking-[0.3em] uppercase mb-4">
                 Portafolio completo
               </p>
-              <h1 className="text-4xl lg:text-6xl font-light text-white mb-6">
-                Todos los <span className="font-serif italic text-neutral-400">proyectos</span>
+              <h1 className={`text-4xl lg:text-6xl font-light mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
+                Todos los <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>proyectos</span>
               </h1>
-              <p className="text-neutral-400 text-lg">
+              <p className={`text-lg ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}>
                 Una colección de mis trabajos en desarrollo web, aplicaciones móviles, videojuegos y marketing digital.
               </p>
             </div>
@@ -61,8 +63,8 @@ export default function ProjectsPage() {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-5 py-2 text-sm tracking-wide transition-all duration-300 ${
                     selectedCategory === category.id
-                      ? 'bg-white text-black'
-                      : 'bg-transparent text-neutral-500 hover:text-white border border-neutral-800 hover:border-neutral-600'
+                      ? theme === 'dark' ? 'bg-white text-black' : 'bg-neutral-900 text-white'
+                      : theme === 'dark' ? 'bg-transparent text-neutral-500 hover:text-white border border-neutral-800 hover:border-neutral-600' : 'bg-transparent text-neutral-500 hover:text-neutral-900 border border-neutral-300 hover:border-neutral-500'
                   }`}
                 >
                   {category.label}
@@ -87,7 +89,7 @@ export default function ProjectsPage() {
                 className="group"
               >
                 {/* Imagen */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900 mb-5">
+                <div className={`relative aspect-[4/3] overflow-hidden mb-5 ${theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-200'}`}>
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -132,10 +134,10 @@ export default function ProjectsPage() {
 
                 {/* Contenido */}
                 <div className="space-y-3">
-                  <h3 className="text-xl font-light text-white group-hover:text-pink-50 transition-colors">
+                  <h3 className={`text-xl font-light group-hover:text-pink-500 transition-colors ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
                     {project.title}
                   </h3>
-                  <p className="text-neutral-500 text-sm leading-relaxed line-clamp-2">
+                  <p className={`text-sm leading-relaxed line-clamp-2 ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}`}>
                     {project.description}
                   </p>
 
@@ -144,14 +146,14 @@ export default function ProjectsPage() {
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span
                         key={i}
-                        className="text-[10px] text-neutral-600 tracking-wider uppercase"
+                        className={`text-[10px] tracking-wider uppercase ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}
                       >
                         {tech}
                         {i < 2 && project.technologies.length > 1 && <span className="ml-2">•</span>}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="text-[10px] text-neutral-700">
+                      <span className={`text-[10px] ${theme === 'dark' ? 'text-neutral-700' : 'text-neutral-400'}`}>
                         +{project.technologies.length - 3}
                       </span>
                     )}
@@ -168,7 +170,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <p className="text-neutral-500">No hay proyectos en esta categoría.</p>
+              <p className={theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}>No hay proyectos en esta categoría.</p>
             </motion.div>
           )}
         </div>

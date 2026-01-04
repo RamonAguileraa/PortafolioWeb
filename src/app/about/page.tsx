@@ -7,10 +7,12 @@ import { Code, Coffee, Heart, Users, ArrowLeft, ArrowUpRight } from 'lucide-reac
 import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '../components/Footer'
+import { useTheme } from '../../context/ThemeContext'
 
 const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { theme } = useTheme()
 
   const stats = [
     { number: '3+', label: 'Años de experiencia', icon: Code },
@@ -23,7 +25,7 @@ const About = () => {
   const learning = ['Web3', 'Machine Learning', 'Rust', 'Go', 'Kubernetes']
 
   return (
-    <div className="min-h-screen bg-neutral-950 pt-20">
+    <div className={`min-h-screen pt-20 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-white'}`}>
       <section className="py-16 lg:py-24 px-6 lg:px-12">
         <div className="container mx-auto max-w-6xl" ref={ref}>
           {/* Back link */}
@@ -34,7 +36,7 @@ const About = () => {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-neutral-500 hover:text-white transition-colors mb-12"
+              className={`inline-flex items-center gap-2 transition-colors mb-12 ${theme === 'dark' ? 'text-neutral-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`}
             >
               <ArrowLeft className="w-4 h-4" />
               <span className="text-sm tracking-wide">Volver al inicio</span>
@@ -51,10 +53,10 @@ const About = () => {
             <p className="text-pink-500 text-xs tracking-[0.3em] uppercase mb-4">
               Sobre mí
             </p>
-            <h1 className="text-4xl lg:text-6xl font-light text-white mb-6">
-              Ramón <span className="font-serif italic text-neutral-400">Aguilera</span>
+            <h1 className={`text-4xl lg:text-6xl font-light mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
+              Ramón <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>Aguilera</span>
             </h1>
-            <p className="text-neutral-400 text-lg leading-relaxed">
+            <p className={`text-lg leading-relaxed ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}>
               Full Stack Developer apasionado por crear experiencias digitales excepcionales.
             </p>
           </motion.div>
@@ -68,7 +70,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-8"
             >
-              <div className="space-y-6 text-neutral-400 leading-relaxed">
+              <div className={`space-y-6 leading-relaxed ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}>
                 <p>
                   Soy un desarrollador web full stack con más de 3 años de experiencia
                   creando aplicaciones web modernas y escalables. Mi pasión por la
@@ -91,12 +93,12 @@ const About = () => {
 
               {/* Skills */}
               <div>
-                <h3 className="text-white text-sm tracking-wider uppercase mb-4">Tecnologías</h3>
+                <h3 className={`text-sm tracking-wider uppercase mb-4 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>Tecnologías</h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-4 py-2 text-sm text-neutral-400 border border-neutral-800 hover:border-neutral-600 transition-colors"
+                      className={`px-4 py-2 text-sm border transition-colors ${theme === 'dark' ? 'text-neutral-400 border-neutral-800 hover:border-neutral-600' : 'text-neutral-600 border-neutral-300 hover:border-neutral-400'}`}
                     >
                       {skill}
                     </span>
@@ -106,7 +108,7 @@ const About = () => {
 
               {/* Learning */}
               <div>
-                <h3 className="text-white text-sm tracking-wider uppercase mb-4">Aprendiendo</h3>
+                <h3 className={`text-sm tracking-wider uppercase mb-4 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>Aprendiendo</h3>
                 <div className="flex flex-wrap gap-2">
                   {learning.map((tech) => (
                     <span
@@ -123,7 +125,7 @@ const About = () => {
               <div className="pt-4">
                 <Link
                   href="/#contact"
-                  className="group inline-flex items-center gap-3 px-6 py-3 bg-white text-black text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors"
+                  className={`group inline-flex items-center gap-3 px-6 py-3 text-sm font-medium tracking-wide transition-colors ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
                 >
                   Trabajemos juntos
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -140,8 +142,8 @@ const About = () => {
             >
               {/* Profile image */}
               <div className="relative">
-                <div className="absolute -inset-4 border border-neutral-800 opacity-50" />
-                <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+                <div className={`absolute -inset-4 border opacity-50 ${theme === 'dark' ? 'border-neutral-800' : 'border-neutral-300'}`} />
+                <div className={`relative aspect-[3/4] overflow-hidden ${theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-100'}`}>
                   <Image
                     src="/yo.png"
                     alt="Ramón Aguilera"
@@ -152,7 +154,7 @@ const About = () => {
                     sizes="(max-width: 768px) 400px, 500px"
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60" />
+                  <div className={`absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-60 ${theme === 'dark' ? 'from-neutral-950' : 'from-white'}`} />
                 </div>
               </div>
 
@@ -164,11 +166,11 @@ const About = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                    className="p-6 bg-neutral-900/50 border border-neutral-800"
+                    className={`p-6 border ${theme === 'dark' ? 'bg-neutral-900/50 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}
                   >
-                    <stat.icon className="w-5 h-5 text-neutral-600 mb-3" />
-                    <div className="text-2xl font-light text-white mb-1">{stat.number}</div>
-                    <div className="text-xs text-neutral-500 tracking-wider uppercase">{stat.label}</div>
+                    <stat.icon className={`w-5 h-5 mb-3 ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-400'}`} />
+                    <div className={`text-2xl font-light mb-1 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>{stat.number}</div>
+                    <div className={`text-xs tracking-wider uppercase ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}`}>{stat.label}</div>
                   </motion.div>
                 ))}
               </div>

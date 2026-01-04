@@ -3,18 +3,21 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ArrowDown, Download } from 'lucide-react'
+import { useTheme } from '../../context/ThemeContext'
 
 const EnhancedHero = () => {
+  const { theme } = useTheme()
+
   return (
-    <section className="relative min-h-screen bg-neutral-950 text-white overflow-hidden">
+    <section className={`relative min-h-screen overflow-hidden ${theme === 'dark' ? 'bg-neutral-950 text-white' : 'bg-white text-neutral-900'}`}>
       {/* Gradient overlay sutil */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-950 to-black" />
+      <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-br from-neutral-900 via-neutral-950 to-black' : 'bg-gradient-to-br from-neutral-50 via-white to-neutral-100'}`} />
 
       {/* Líneas decorativas sutiles - ocultas en móvil */}
       <div className="absolute inset-0 opacity-[0.03] hidden md:block">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-white" />
-        <div className="absolute top-0 left-1/2 w-px h-full bg-white" />
-        <div className="absolute top-0 left-3/4 w-px h-full bg-white" />
+        <div className={`absolute top-0 left-1/4 w-px h-full ${theme === 'dark' ? 'bg-white' : 'bg-neutral-900'}`} />
+        <div className={`absolute top-0 left-1/2 w-px h-full ${theme === 'dark' ? 'bg-white' : 'bg-neutral-900'}`} />
+        <div className={`absolute top-0 left-3/4 w-px h-full ${theme === 'dark' ? 'bg-white' : 'bg-neutral-900'}`} />
       </div>
 
       {/* Contenido principal */}
@@ -30,7 +33,7 @@ const EnhancedHero = () => {
             quality={100}
             unoptimized
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-neutral-950" />
+          <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent ${theme === 'dark' ? 'to-neutral-950' : 'to-white'}`} />
         </div>
 
         {/* Desktop layout */}
@@ -51,7 +54,7 @@ const EnhancedHero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="text-neutral-500 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+                    className={`text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}`}
                   >
                     Ing. en Tecnologías de la Información • Full Stack Developer
                   </motion.p>
@@ -60,11 +63,11 @@ const EnhancedHero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight"
+                    className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
                   >
                     Ramón
                     <br />
-                    <span className="font-serif italic text-neutral-400">Aguilera</span>
+                    <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>Aguilera</span>
                   </motion.h1>
                 </div>
 
@@ -73,7 +76,7 @@ const EnhancedHero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="text-neutral-400 text-base sm:text-lg lg:text-xl leading-relaxed max-w-md mx-auto lg:mx-0"
+                  className={`text-base sm:text-lg lg:text-xl leading-relaxed max-w-md mx-auto lg:mx-0 ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}
                 >
                   Creando experiencias digitales excepcionales a través del código y el diseño.
                 </motion.p>
@@ -92,7 +95,7 @@ const EnhancedHero = () => {
                         projectsSection.scrollIntoView({ behavior: 'smooth' })
                       }
                     }}
-                    className="group inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-white text-black text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors duration-300"
+                    className={`group inline-flex items-center justify-center gap-3 px-6 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
                   >
                     Ver proyectos
                     <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
@@ -100,7 +103,7 @@ const EnhancedHero = () => {
 
                   <a
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-3 px-6 py-3.5 border border-neutral-700 text-neutral-300 text-sm font-medium tracking-wide hover:border-neutral-500 hover:text-white transition-all duration-300"
+                    className={`inline-flex items-center justify-center gap-3 px-6 py-3.5 border text-sm font-medium tracking-wide transition-all duration-300 ${theme === 'dark' ? 'border-neutral-700 text-neutral-300 hover:border-neutral-500 hover:text-white' : 'border-neutral-300 text-neutral-600 hover:border-neutral-500 hover:text-neutral-900'}`}
                   >
                     Contacto
                   </a>
@@ -120,7 +123,7 @@ const EnhancedHero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
-                  className="grid grid-cols-3 gap-4 sm:gap-8 lg:gap-12 pt-6 lg:pt-8 border-t border-neutral-800"
+                  className={`grid grid-cols-3 gap-4 sm:gap-8 lg:gap-12 pt-6 lg:pt-8 border-t ${theme === 'dark' ? 'border-neutral-800' : 'border-neutral-200'}`}
                 >
                   {[
                     { number: '3+', label: 'Años' },
@@ -128,8 +131,8 @@ const EnhancedHero = () => {
                     { number: '100%', label: 'Dedicación' }
                   ].map((stat, index) => (
                     <div key={index} className="text-center lg:text-left">
-                      <div className="text-xl sm:text-2xl font-light text-white">{stat.number}</div>
-                      <div className="text-[10px] sm:text-xs text-neutral-500 tracking-wider uppercase mt-1">{stat.label}</div>
+                      <div className={`text-xl sm:text-2xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>{stat.number}</div>
+                      <div className={`text-[10px] sm:text-xs tracking-wider uppercase mt-1 ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}`}>{stat.label}</div>
                     </div>
                   ))}
                 </motion.div>
@@ -144,11 +147,11 @@ const EnhancedHero = () => {
               >
                 <div className="relative w-full">
                   {/* Marco decorativo */}
-                  <div className="absolute -inset-4 border border-neutral-800 opacity-50" />
-                  <div className="absolute -inset-8 border border-neutral-800/30" />
+                  <div className={`absolute -inset-4 border opacity-50 ${theme === 'dark' ? 'border-neutral-800' : 'border-neutral-300'}`} />
+                  <div className={`absolute -inset-8 border ${theme === 'dark' ? 'border-neutral-800/30' : 'border-neutral-200/50'}`} />
 
                   {/* Imagen */}
-                  <div className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+                  <div className={`relative aspect-[3/4] overflow-hidden ${theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-100'}`}>
                     <Image
                       src="/yo.png"
                       alt="Ramón Aguilera"
@@ -159,7 +162,7 @@ const EnhancedHero = () => {
                       unoptimized
                     />
                     {/* Overlay gradient sutil */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/50 via-transparent to-transparent" />
+                    <div className={`absolute inset-0 bg-gradient-to-t via-transparent to-transparent ${theme === 'dark' ? 'from-neutral-950/50' : 'from-white/50'}`} />
                   </div>
 
                   {/* Acento rosa sutil */}
@@ -186,8 +189,8 @@ const EnhancedHero = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-[10px] text-neutral-600 tracking-[0.2em] uppercase">Scroll</span>
-            <div className="w-px h-8 bg-gradient-to-b from-neutral-600 to-transparent" />
+            <span className={`text-[10px] tracking-[0.2em] uppercase ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>Scroll</span>
+            <div className={`w-px h-8 bg-gradient-to-b to-transparent ${theme === 'dark' ? 'from-neutral-600' : 'from-neutral-400'}`} />
           </motion.div>
         </motion.div>
       </div>
