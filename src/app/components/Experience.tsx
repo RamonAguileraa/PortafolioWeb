@@ -141,7 +141,7 @@ const startups = [
   },
   {
     name: 'IBENTEU',
-    logo: '/IBENTEU-app.png',
+    logo: '/ibenteu.jpg',
     type: 'App Móvil',
     description: 'Aplicación móvil desarrollada como proyecto de software.',
     status: 'Finalizado'
