@@ -4,36 +4,38 @@ import { motion } from 'framer-motion'
 import { FaWhatsapp, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'
 import { ArrowUpRight, Mail } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
-
-const socialLinks = [
-  {
-    icon: FaWhatsapp,
-    label: 'WhatsApp',
-    href: 'https://wa.me/526142283958?text=Hola%20Ramón%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte.',
-    description: 'Mensaje directo'
-  },
-  {
-    icon: FaLinkedin,
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/ramón-aguilera-95a2732a9',
-    description: 'Conectemos'
-  },
-  {
-    icon: FaGithub,
-    label: 'GitHub',
-    href: 'https://github.com/RamonAguileraa',
-    description: 'Ver código'
-  },
-  {
-    icon: FaInstagram,
-    label: 'Instagram',
-    href: 'https://www.instagram.com/ramon_aguileraa',
-    description: 'Sígueme'
-  },
-]
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Contact() {
   const { theme } = useTheme()
+  const { t } = useLanguage()
+
+  const socialLinks = [
+    {
+      icon: FaWhatsapp,
+      label: 'WhatsApp',
+      href: 'https://wa.me/526142283958?text=Hola%20Ramón%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte.',
+      description: t.contact.whatsapp
+    },
+    {
+      icon: FaLinkedin,
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/ramón-aguilera-95a2732a9',
+      description: t.contact.linkedin
+    },
+    {
+      icon: FaGithub,
+      label: 'GitHub',
+      href: 'https://github.com/RamonAguileraa',
+      description: t.contact.github
+    },
+    {
+      icon: FaInstagram,
+      label: 'Instagram',
+      href: 'https://www.instagram.com/ramon_aguileraa',
+      description: t.contact.instagram
+    },
+  ]
 
   return (
     <section id="contact" className={`relative py-16 sm:py-20 lg:py-32 ${theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-50'}`}>
@@ -47,7 +49,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
             >
-              Contacto
+              {t.contact.label}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -56,9 +58,9 @@ export default function Contact() {
               transition={{ delay: 0.1 }}
               className={`text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light mb-4 sm:mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
             >
-              ¿Tienes un proyecto
+              {t.contact.title}
               <br />
-              <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>en mente?</span>
+              <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>{t.contact.titleItalic}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
@@ -67,7 +69,7 @@ export default function Contact() {
               transition={{ delay: 0.2 }}
               className={`text-base sm:text-lg max-w-xl mx-auto ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}
             >
-              Estoy disponible para colaboraciones, proyectos freelance y oportunidades laborales.
+              {t.contact.description}
             </motion.p>
           </div>
 
@@ -122,7 +124,7 @@ export default function Contact() {
               download="Ramon-Aguilera-CV.pdf"
               className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border text-sm font-medium tracking-wide hover:border-pink-500 hover:text-pink-400 transition-all duration-300 ${theme === 'dark' ? 'border-neutral-700 text-neutral-300' : 'border-neutral-300 text-neutral-600'}`}
             >
-              Descargar CV
+              {t.contact.downloadCV}
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </motion.div>

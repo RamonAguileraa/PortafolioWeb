@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaInstagram, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 const socialLinks = [
   { icon: FaInstagram, href: 'https://www.instagram.com/ramon_aguileraa', label: 'Instagram' },
@@ -14,6 +15,7 @@ const socialLinks = [
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   const { theme } = useTheme()
+  const { t } = useLanguage()
 
   return (
     <footer className={`border-t ${theme === 'dark' ? 'bg-neutral-950 border-neutral-900' : 'bg-white border-neutral-200'}`}>
@@ -50,8 +52,8 @@ export default function Footer() {
         {/* Línea divisoria */}
         <div className={`border-t mt-8 pt-8 ${theme === 'dark' ? 'border-neutral-900' : 'border-neutral-200'}`}>
           <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>
-            <p>© {currentYear} Ramón Aguilera. Todos los derechos reservados.</p>
-            <p>Diseñado y desarrollado con pasión.</p>
+            <p>© {currentYear} Ramón Aguilera. {t.footer.rights}</p>
+            <p>{t.footer.madeWith}</p>
           </div>
         </div>
       </div>

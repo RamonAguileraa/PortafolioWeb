@@ -3,36 +3,38 @@
 import { motion } from 'framer-motion'
 import { Code2, Smartphone, Palette, TrendingUp, ArrowUpRight } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
-
-const services = [
-  {
-    icon: Code2,
-    number: '01',
-    title: 'Web Development',
-    description: 'Aplicaciones web modernas con React, Next.js y TypeScript. Rendimiento y escalabilidad.',
-  },
-  {
-    icon: Smartphone,
-    number: '02',
-    title: 'Mobile Apps',
-    description: 'Apps móviles multiplataforma con React Native. Experiencias fluidas para iOS y Android.',
-  },
-  {
-    icon: Palette,
-    number: '03',
-    title: 'UI/UX Design',
-    description: 'Interfaces intuitivas y atractivas. Prototipado en Figma centrado en el usuario.',
-  },
-  {
-    icon: TrendingUp,
-    number: '04',
-    title: 'Marketing Digital',
-    description: 'Estrategias de marketing, SEO y gestión de redes sociales para impulsar tu marca.',
-  },
-]
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Services() {
   const { theme } = useTheme()
+  const { t } = useLanguage()
+
+  const services = [
+    {
+      icon: Code2,
+      number: '01',
+      title: t.services.webDev.title,
+      description: t.services.webDev.description,
+    },
+    {
+      icon: Smartphone,
+      number: '02',
+      title: t.services.mobile.title,
+      description: t.services.mobile.description,
+    },
+    {
+      icon: Palette,
+      number: '03',
+      title: t.services.uiux.title,
+      description: t.services.uiux.description,
+    },
+    {
+      icon: TrendingUp,
+      number: '04',
+      title: t.services.marketing.title,
+      description: t.services.marketing.description,
+    },
+  ]
 
   return (
     <section id="services" className={`relative py-16 sm:py-20 lg:py-32 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-white'}`}>
@@ -45,7 +47,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
           >
-            Servicios
+            {t.services.label}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -54,9 +56,9 @@ export default function Services() {
             transition={{ delay: 0.1 }}
             className={`text-2xl sm:text-3xl lg:text-5xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
-            Lo que puedo hacer
+            {t.services.title}
             <br />
-            <span className={theme === 'dark' ? 'text-neutral-500' : 'text-neutral-400'}>por ti</span>
+            <span className={theme === 'dark' ? 'text-neutral-500' : 'text-neutral-400'}>{t.services.subtitle}</span>
           </motion.h2>
         </div>
 
@@ -89,7 +91,7 @@ export default function Services() {
                 </p>
 
                 <div className={`flex items-center gap-2 group-hover:text-pink-500 transition-colors ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>
-                  <span className="text-xs sm:text-sm tracking-wide">Más información</span>
+                  <span className="text-xs sm:text-sm tracking-wide">{t.services.moreInfo}</span>
                   <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </div>
               </div>

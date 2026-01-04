@@ -8,18 +8,20 @@ import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react'
 import { projects } from '../../data/projects'
 import Footer from '../components/Footer'
 import { useTheme } from '../../context/ThemeContext'
-
-const categories = [
-  { id: 'all', label: 'Todos' },
-  { id: 'web', label: 'Web' },
-  { id: 'mobile', label: 'Mobile' },
-  { id: 'videojuegos', label: 'Videojuegos' },
-  { id: 'marketing', label: 'Marketing' },
-]
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const { theme } = useTheme()
+  const { t } = useLanguage()
+
+  const categories = [
+    { id: 'all', label: t.categories.all },
+    { id: 'web', label: t.categories.web },
+    { id: 'mobile', label: t.categories.mobile },
+    { id: 'videojuegos', label: t.categories.videojuegos },
+    { id: 'marketing', label: t.categories.marketing },
+  ]
 
   const filteredProjects = projects.filter(
     (project) => selectedCategory === 'all' || project.category === selectedCategory
@@ -40,18 +42,18 @@ export default function ProjectsPage() {
               className={`inline-flex items-center gap-2 transition-colors mb-12 ${theme === 'dark' ? 'text-neutral-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`}
             >
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm tracking-wide">Volver al inicio</span>
+              <span className="text-sm tracking-wide">{t.projectsPage.backHome}</span>
             </Link>
 
             <div className="max-w-2xl mb-16">
               <p className="text-pink-500 text-xs tracking-[0.3em] uppercase mb-4">
-                Portafolio completo
+                {t.projectsPage.label}
               </p>
               <h1 className={`text-4xl lg:text-6xl font-light mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
-                Todos los <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>proyectos</span>
+                {t.projectsPage.title} <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>{t.projectsPage.titleItalic}</span>
               </h1>
               <p className={`text-lg ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}>
-                Una colección de mis trabajos en desarrollo web, aplicaciones móviles, videojuegos y marketing digital.
+                {t.projectsPage.description}
               </p>
             </div>
 
@@ -170,7 +172,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <p className={theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}>No hay proyectos en esta categoría.</p>
+              <p className={theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}>{t.projectsPage.noProjects}</p>
             </motion.div>
           )}
         </div>

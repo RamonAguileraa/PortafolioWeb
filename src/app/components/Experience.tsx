@@ -5,154 +5,129 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Briefcase, Calendar, MapPin, ExternalLink, Award, Users, Rocket, X, ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useTheme } from '../../context/ThemeContext'
-
-const workExperience = [
-  {
-    role: 'Full Stack Developer',
-    company: 'Vendex.mx',
-    logo: '/vendex.png',
-    location: 'Chihuahua, México',
-    period: 'Oct 2024 - Presente',
-    current: true,
-    description: [
-      'Desarrollo e integración de módulos internos del CRM',
-      'Optimización de algoritmos de IA para scoring de leads',
-      'Integración de APIs dentro de la plataforma',
-      'Diseño de dashboard e interfaces internas',
-      'Documentación técnica y pruebas funcionales',
-      'Metodología Scrum con Jira'
-    ],
-    technologies: ['React', 'Node.js', 'AI/ML', 'APIs', 'Scrum']
-  },
-  {
-    role: 'Fundador & Director Creativo',
-    company: 'Studioko',
-    logo: '/studioko.png',
-    location: 'Chihuahua, México',
-    period: '2024 - Presente',
-    current: true,
-    link: 'https://studioko.dev',
-    description: [
-      'Estudio creativo especializado en desarrollo web y diseño',
-      'Desarrollo de proyectos para clientes locales e internacionales',
-      'Dirección creativa y estrategia digital'
-    ],
-    technologies: ['Next.js', 'React', 'UI/UX', 'Branding']
-  },
-  {
-    role: 'Full Stack Developer',
-    company: 'Canal 28 Chihuahua',
-    logo: '/canal 28.webp',
-    location: 'Chihuahua, México',
-    period: 'Ene 2023 - May 2023',
-    description: [
-      'Desarrollo del portal informativo de la televisora',
-      'Implementación de CMS personalizado',
-      'Gestión de base de datos y backend'
-    ],
-    technologies: ['PHP', 'MySQL', 'Bootstrap', 'CMS']
-  },
-  {
-    role: 'Frontend Developer - Web3',
-    company: 'TheZenCorp',
-    logo: '/thezen.jpg',
-    location: 'Remoto',
-    period: 'Ene 2023 - May 2023',
-    description: [
-      'Desarrollo de interfaces para aplicaciones móviles descentralizadas',
-      'Integración con smart contracts y blockchain'
-    ],
-    technologies: ['React Native', 'Web3', 'Blockchain', 'Smart Contracts']
-  }
-]
-
-const leadership = [
-  {
-    role: 'Líder del Club de Programación',
-    organization: 'Universidad Tecnológica de Chihuahua',
-    logo: '/utch.png',
-    period: '2024 - Presente',
-    highlights: [
-      'Colaboramos en la organización de Chihuahua Tech Week 2025',
-      'Organizamos eventos de Blockchain junto a Ethereum México',
-      'Trabajamos de la mano con la comunidad AWS',
-      'Viajamos con 8 compañeros a Ethereum México Monterrey',
-      'Representamos al Machaca Valley en Monterrey Tech Week'
-    ]
-  },
-  {
-    role: 'Líder de Equipo',
-    organization: 'BosoZoku Studio',
-    logo: '/Bosozoku.jpg',
-    period: '2024',
-    highlights: [
-      'Lideré al equipo de desarrollo de videojuegos indie',
-      'Ganamos la beca del 100% en emprendimiento en Ludic Jam (Tec de Monterrey)'
-    ],
-    images: ['/beca.png']
-  }
-]
-
-const mentorship = [
-  {
-    event: 'NASA Space Apps Challenge',
-    location: 'Chihuahua',
-    years: ['2023', '2024', '2025'],
-    role: 'Mentor',
-    images: ['/recospace.png', '/recospace2.png', '/spaceapps2025.pdf', '/spaceapps2025.2.pdf']
-  },
-  {
-    event: 'MIT Workshop Challenge',
-    location: 'Tec de Monterrey',
-    years: ['2024'],
-    role: 'Mentor',
-    images: ['/mentor.png']
-  },
-  {
-    event: 'AIM 2025 - Artificial Intelligence Mexico',
-    location: 'Chihuahua',
-    years: ['2025'],
-    role: 'Invitado por Startup Chihuahua',
-    description: 'Primer evento internacional de IA en Chihuahua',
-    images: ['/reconocimiento.png']
-  }
-]
-
-const startups = [
-  {
-    name: 'Serena',
-    logo: '/serena.jpg',
-    type: 'PWA - Salud Reproductiva',
-    description: 'App para el cuidado de la salud reproductiva femenina. Proyecto integrador reconocido por empresarios con múltiples propuestas.',
-    status: 'En desarrollo'
-  },
-  {
-    name: 'PetKeeper',
-    logo: '/PetKeeperquitarfondo.png',
-    type: 'Startup - Mascotas',
-    description: 'Aplicación para gestión de mascotas iniciada en la Escuelita Maker de Chihuahua.',
-    status: 'En desarrollo'
-  },
-  {
-    name: 'BosoZoku Studio',
-    logo: '/Bosozoku.jpg',
-    type: 'Videojuegos Indie',
-    description: 'Empresa de videojuegos indie. Ganadores de beca 100% en emprendimiento en Ludic Jam (Tec de Monterrey).',
-    status: 'Activo',
-    highlight: 'Ganadores Ludic Jam'
-  },
-  {
-    name: 'IBENTEU',
-    logo: '/ibenteu.jpg',
-    type: 'App Web',
-    description: 'Aplicación web desarrollada como proyecto de software.',
-    status: 'Finalizado'
-  }
-]
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Experience() {
   const [selectedEvent, setSelectedEvent] = useState<{ event: string; images: string[] } | null>(null)
   const { theme } = useTheme()
+  const { t } = useLanguage()
+
+  const workExperience = [
+    {
+      role: t.workExp.vendex.role,
+      company: 'Vendex.mx',
+      logo: '/vendex.png',
+      location: 'Chihuahua, México',
+      period: t.workExp.vendex.period,
+      current: true,
+      description: t.workExp.vendex.descriptions,
+      technologies: ['React', 'Node.js', 'AI/ML', 'APIs', 'Scrum']
+    },
+    {
+      role: t.workExp.studioko.role,
+      company: 'Studioko',
+      logo: '/studioko.png',
+      location: 'Chihuahua, México',
+      period: t.workExp.studioko.period,
+      current: true,
+      link: 'https://studioko.dev',
+      description: t.workExp.studioko.descriptions,
+      technologies: ['Next.js', 'React', 'UI/UX', 'Branding']
+    },
+    {
+      role: t.workExp.canal28.role,
+      company: 'Canal 28 Chihuahua',
+      logo: '/canal 28.webp',
+      location: 'Chihuahua, México',
+      period: t.workExp.canal28.period,
+      description: t.workExp.canal28.descriptions,
+      technologies: ['PHP', 'MySQL', 'Bootstrap', 'CMS']
+    },
+    {
+      role: t.workExp.thezen.role,
+      company: 'TheZenCorp',
+      logo: '/thezen.jpg',
+      location: t.workExp.thezen.location,
+      period: t.workExp.thezen.period,
+      description: t.workExp.thezen.descriptions,
+      technologies: ['React Native', 'Web3', 'Blockchain', 'Smart Contracts']
+    }
+  ]
+
+  const leadership = [
+    {
+      role: t.leadershipData.utch.role,
+      organization: 'Universidad Tecnológica de Chihuahua',
+      logo: '/utch.png',
+      period: t.leadershipData.utch.period,
+      highlights: t.leadershipData.utch.highlights
+    },
+    {
+      role: t.leadershipData.bosozoku.role,
+      organization: 'BosoZoku Studio',
+      logo: '/Bosozoku.jpg',
+      period: t.leadershipData.bosozoku.period,
+      highlights: t.leadershipData.bosozoku.highlights,
+      images: ['/beca.png']
+    }
+  ]
+
+  const mentorship = [
+    {
+      event: t.mentorshipData.nasa.event,
+      location: 'Chihuahua',
+      years: ['2023', '2024', '2025'],
+      role: t.mentorshipData.nasa.role,
+      images: ['/recospace.png', '/recospace2.png', '/spaceapps2025.pdf', '/spaceapps2025.2.pdf']
+    },
+    {
+      event: t.mentorshipData.mit.event,
+      location: 'Tec de Monterrey',
+      years: ['2024'],
+      role: t.mentorshipData.mit.role,
+      images: ['/mentor.png']
+    },
+    {
+      event: t.mentorshipData.aim.event,
+      location: 'Chihuahua',
+      years: ['2025'],
+      role: t.mentorshipData.aim.role,
+      description: t.mentorshipData.aim.description,
+      images: ['/reconocimiento.png']
+    }
+  ]
+
+  const startups = [
+    {
+      name: 'Serena',
+      logo: '/serena.jpg',
+      type: t.startupsData.serena.type,
+      description: t.startupsData.serena.description,
+      status: t.startupsData.serena.status
+    },
+    {
+      name: 'PetKeeper',
+      logo: '/PetKeeperquitarfondo.png',
+      type: t.startupsData.petkeeper.type,
+      description: t.startupsData.petkeeper.description,
+      status: t.startupsData.petkeeper.status
+    },
+    {
+      name: 'BosoZoku Studio',
+      logo: '/Bosozoku.jpg',
+      type: t.startupsData.bosozokuStudio.type,
+      description: t.startupsData.bosozokuStudio.description,
+      status: t.startupsData.bosozokuStudio.status,
+      highlight: t.startupsData.bosozokuStudio.highlight
+    },
+    {
+      name: 'IBENTEU',
+      logo: '/ibenteu.jpg',
+      type: t.startupsData.ibenteu.type,
+      description: t.startupsData.ibenteu.description,
+      status: t.startupsData.ibenteu.status
+    }
+  ]
 
   return (
     <section id="experience" className={`relative py-16 sm:py-20 lg:py-32 ${theme === 'dark' ? 'bg-neutral-900' : 'bg-white'}`}>
@@ -166,7 +141,7 @@ export default function Experience() {
             viewport={{ once: true }}
             className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
           >
-            Trayectoria
+            {t.experience.label}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -175,7 +150,7 @@ export default function Experience() {
             transition={{ delay: 0.1 }}
             className={`text-2xl sm:text-3xl lg:text-5xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
-            Experiencia <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>& Logros</span>
+            {t.experience.title} <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>{t.experience.titleItalic}</span>
           </motion.h2>
         </div>
 
@@ -188,7 +163,7 @@ export default function Experience() {
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Briefcase className="w-5 h-5 text-pink-500" />
-            Experiencia Laboral
+            {t.experience.workExperience}
           </motion.h3>
 
           <div className="space-y-6">
@@ -244,7 +219,7 @@ export default function Experience() {
                       <Calendar className="w-4 h-4" />
                       {job.period}
                       {job.current && (
-                        <span className="px-2 py-0.5 text-[10px] bg-pink-500/20 text-pink-400 rounded">Actual</span>
+                        <span className="px-2 py-0.5 text-[10px] bg-pink-500/20 text-pink-400 rounded">{t.experience.current}</span>
                       )}
                     </div>
                   </div>
@@ -280,7 +255,7 @@ export default function Experience() {
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Users className="w-5 h-5 text-pink-500" />
-            Liderazgo & Comunidad
+            {t.experience.leadership}
           </motion.h3>
 
           <div className="grid sm:grid-cols-2 gap-4">
@@ -327,7 +302,7 @@ export default function Experience() {
                   ))}
                 </ul>
                 {item.images && (
-                  <p className={`text-[10px] mt-3 group-hover:text-neutral-500 transition-colors ${theme === 'dark' ? 'text-neutral-700' : 'text-neutral-400'}`}>Click para ver reconocimientos</p>
+                  <p className={`text-[10px] mt-3 group-hover:text-neutral-500 transition-colors ${theme === 'dark' ? 'text-neutral-700' : 'text-neutral-400'}`}>{t.experience.viewRecognitions}</p>
                 )}
               </motion.div>
             ))}
@@ -343,7 +318,7 @@ export default function Experience() {
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Award className="w-5 h-5 text-pink-500" />
-            Mentoría & Eventos
+            {t.experience.mentorship}
           </motion.h3>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -376,7 +351,7 @@ export default function Experience() {
                   <p className={`text-xs mt-1 ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>{item.description}</p>
                 )}
                 {item.images && (
-                  <p className={`text-[10px] mt-2 group-hover:text-neutral-500 transition-colors ${theme === 'dark' ? 'text-neutral-700' : 'text-neutral-400'}`}>Click para ver reconocimientos</p>
+                  <p className={`text-[10px] mt-2 group-hover:text-neutral-500 transition-colors ${theme === 'dark' ? 'text-neutral-700' : 'text-neutral-400'}`}>{t.experience.viewRecognitions}</p>
                 )}
               </motion.div>
             ))}
@@ -392,7 +367,7 @@ export default function Experience() {
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Rocket className="w-5 h-5 text-pink-500" />
-            Startups & Proyectos
+            {t.experience.startups}
           </motion.h3>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

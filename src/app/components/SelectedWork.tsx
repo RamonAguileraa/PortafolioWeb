@@ -6,9 +6,11 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '../../data/projects'
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function SelectedWork() {
   const { theme } = useTheme()
+  const { t } = useLanguage()
   const featuredProjects = projects.filter((project) => project.featured).slice(0, 6)
 
   return (
@@ -23,7 +25,7 @@ export default function SelectedWork() {
               viewport={{ once: true }}
               className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
             >
-              Portafolio
+              {t.selectedWork.label}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -32,7 +34,7 @@ export default function SelectedWork() {
               transition={{ delay: 0.1 }}
               className={`text-2xl sm:text-3xl lg:text-5xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
             >
-              Selected <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>Work</span>
+              {t.selectedWork.title} <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>{t.selectedWork.titleItalic}</span>
             </motion.h2>
           </div>
 
@@ -47,7 +49,7 @@ export default function SelectedWork() {
               href="/projects"
               className={`group inline-flex items-center gap-2 transition-colors ${theme === 'dark' ? 'text-neutral-400 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`}
             >
-              <span className="text-sm tracking-wide">Ver todos</span>
+              <span className="text-sm tracking-wide">{t.selectedWork.viewAll}</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
           </motion.div>
@@ -143,7 +145,7 @@ export default function SelectedWork() {
             href="/projects"
             className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-sm font-medium tracking-wide transition-colors duration-300 ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
           >
-            Explorar todos los proyectos
+            {t.selectedWork.exploreAll}
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </Link>
         </motion.div>

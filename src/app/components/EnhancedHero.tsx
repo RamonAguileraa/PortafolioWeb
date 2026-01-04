@@ -4,9 +4,11 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ArrowDown, Download } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 const EnhancedHero = () => {
   const { theme } = useTheme()
+  const { t } = useLanguage()
 
   return (
     <section className={`relative min-h-screen overflow-hidden ${theme === 'dark' ? 'bg-neutral-950 text-white' : 'bg-white text-neutral-900'}`}>
@@ -56,7 +58,7 @@ const EnhancedHero = () => {
                     transition={{ delay: 0.2, duration: 0.6 }}
                     className={`text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-600'}`}
                   >
-                    Ing. en Tecnologías de la Información • Full Stack Developer
+                    {t.hero.title}
                   </motion.p>
 
                   <motion.h1
@@ -78,7 +80,7 @@ const EnhancedHero = () => {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className={`text-base sm:text-lg lg:text-xl leading-relaxed max-w-md mx-auto lg:mx-0 ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}
                 >
-                  Creando experiencias digitales excepcionales a través del código y el diseño.
+                  {t.hero.description}
                 </motion.p>
 
                 {/* CTAs */}
@@ -97,7 +99,7 @@ const EnhancedHero = () => {
                     }}
                     className={`group inline-flex items-center justify-center gap-3 px-6 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
                   >
-                    Ver proyectos
+                    {t.hero.viewProjects}
                     <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
                   </button>
 
@@ -105,7 +107,7 @@ const EnhancedHero = () => {
                     href="#contact"
                     className={`inline-flex items-center justify-center gap-3 px-6 py-3.5 border text-sm font-medium tracking-wide transition-all duration-300 ${theme === 'dark' ? 'border-neutral-700 text-neutral-300 hover:border-neutral-500 hover:text-white' : 'border-neutral-300 text-neutral-600 hover:border-neutral-500 hover:text-neutral-900'}`}
                   >
-                    Contacto
+                    {t.hero.contact}
                   </a>
 
                   <a
@@ -114,7 +116,7 @@ const EnhancedHero = () => {
                     className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-pink-500/30 text-pink-400 text-sm font-medium tracking-wide hover:border-pink-500 hover:bg-pink-500/10 transition-all duration-300"
                   >
                     <Download className="w-4 h-4" />
-                    Descargar CV
+                    {t.hero.downloadCV}
                   </a>
                 </motion.div>
 
@@ -126,9 +128,9 @@ const EnhancedHero = () => {
                   className={`grid grid-cols-3 gap-4 sm:gap-8 lg:gap-12 pt-6 lg:pt-8 border-t ${theme === 'dark' ? 'border-neutral-800' : 'border-neutral-200'}`}
                 >
                   {[
-                    { number: '3+', label: 'Años' },
-                    { number: '50+', label: 'Proyectos' },
-                    { number: '100%', label: 'Dedicación' }
+                    { number: '3+', label: t.hero.years },
+                    { number: '50+', label: t.hero.projects },
+                    { number: '100%', label: t.hero.dedication }
                   ].map((stat, index) => (
                     <div key={index} className="text-center lg:text-left">
                       <div className={`text-xl sm:text-2xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>{stat.number}</div>
@@ -189,7 +191,7 @@ const EnhancedHero = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2"
           >
-            <span className={`text-[10px] tracking-[0.2em] uppercase ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>Scroll</span>
+            <span className={`text-[10px] tracking-[0.2em] uppercase ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>{t.hero.scroll}</span>
             <div className={`w-px h-8 bg-gradient-to-b to-transparent ${theme === 'dark' ? 'from-neutral-600' : 'from-neutral-400'}`} />
           </motion.div>
         </motion.div>

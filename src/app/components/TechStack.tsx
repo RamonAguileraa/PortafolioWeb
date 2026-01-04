@@ -12,6 +12,7 @@ import {
   SiFigma
 } from 'react-icons/si'
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 const technologies = [
   { icon: SiReact, name: 'React' },
@@ -26,6 +27,7 @@ const technologies = [
 
 export default function TechStack() {
   const { theme } = useTheme()
+  const { t } = useLanguage()
 
   return (
     <section className={`relative py-10 sm:py-12 lg:py-16 border-y ${theme === 'dark' ? 'bg-neutral-950 border-neutral-900' : 'bg-neutral-100 border-neutral-200'}`}>
@@ -36,7 +38,7 @@ export default function TechStack() {
           viewport={{ once: true }}
           className={`text-center text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-6 sm:mb-10 ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}
         >
-          Tecnologías que domino
+          {t.techStack.title}
         </motion.p>
 
         <div className="grid grid-cols-4 sm:flex sm:flex-wrap sm:justify-center items-center gap-6 sm:gap-8 lg:gap-16">

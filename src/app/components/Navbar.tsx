@@ -17,11 +17,11 @@ export default function Navbar() {
   const { language, toggleLanguage, t } = useLanguage()
 
   const navLinks = [
-    { name: t('nav.home'), href: '#inicio' },
-    { name: t('nav.services'), href: '#services' },
-    { name: t('nav.projects'), href: '#selected-work' },
-    { name: t('nav.experience'), href: '#experience' },
-    { name: t('nav.contact'), href: '#contact' },
+    { name: t.nav.home, href: '#inicio' },
+    { name: t.nav.services, href: '#services' },
+    { name: t.nav.projects, href: '#selected-work' },
+    { name: t.nav.experience, href: '#experience' },
+    { name: t.nav.contact, href: '#contact' },
   ]
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function Navbar() {
                 href="/projects"
                 className={`ml-2 px-5 py-2 text-sm transition-colors tracking-wide ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
               >
-                {t('nav.viewProjects')}
+                {t.nav.viewProjects}
               </Link>
             </div>
 
@@ -167,7 +167,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`mt-4 px-8 py-3 text-sm tracking-wide ${theme === 'dark' ? 'bg-white text-black' : 'bg-neutral-900 text-white'}`}
                 >
-                  {t('nav.viewProjects')}
+                  {t.nav.viewProjects}
                 </Link>
               </motion.div>
             </div>

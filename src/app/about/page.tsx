@@ -8,17 +8,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Footer from '../components/Footer'
 import { useTheme } from '../../context/ThemeContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 const About = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const { theme } = useTheme()
+  const { t } = useLanguage()
 
   const stats = [
-    { number: '3+', label: 'Años de experiencia', icon: Code },
-    { number: '50+', label: 'Proyectos completados', icon: Coffee },
-    { number: '100%', label: 'Satisfacción del cliente', icon: Heart },
-    { number: '24/7', label: 'Disponibilidad', icon: Users },
+    { number: '3+', label: t.aboutPage.stats.yearsExperience, icon: Code },
+    { number: '50+', label: t.aboutPage.stats.completedProjects, icon: Coffee },
+    { number: '100%', label: t.aboutPage.stats.clientSatisfaction, icon: Heart },
+    { number: '24/7', label: t.aboutPage.stats.availability, icon: Users },
   ]
 
   const skills = ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'MongoDB', 'Tailwind CSS', 'Figma']
@@ -39,7 +41,7 @@ const About = () => {
               className={`inline-flex items-center gap-2 transition-colors mb-12 ${theme === 'dark' ? 'text-neutral-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`}
             >
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm tracking-wide">Volver al inicio</span>
+              <span className="text-sm tracking-wide">{t.aboutPage.backHome}</span>
             </Link>
           </motion.div>
 
@@ -51,13 +53,13 @@ const About = () => {
             className="max-w-2xl mb-16"
           >
             <p className="text-pink-500 text-xs tracking-[0.3em] uppercase mb-4">
-              Sobre mí
+              {t.aboutPage.label}
             </p>
             <h1 className={`text-4xl lg:text-6xl font-light mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>
               Ramón <span className={`font-serif italic ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'}`}>Aguilera</span>
             </h1>
             <p className={`text-lg leading-relaxed ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}>
-              Full Stack Developer apasionado por crear experiencias digitales excepcionales.
+              {t.aboutPage.description}
             </p>
           </motion.div>
 
@@ -71,29 +73,14 @@ const About = () => {
               className="space-y-8"
             >
               <div className={`space-y-6 leading-relaxed ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}>
-                <p>
-                  Soy un desarrollador web full stack con más de 3 años de experiencia
-                  creando aplicaciones web modernas y escalables. Mi pasión por la
-                  tecnología me ha llevado a especializarme en el ecosistema de
-                  JavaScript, especialmente en React, Next.js y Node.js.
-                </p>
-                <p>
-                  Me encanta resolver problemas complejos y crear experiencias de usuario
-                  excepcionales. Siempre estoy aprendiendo nuevas tecnologías y
-                  mejorando mis habilidades para mantenerme al día con las últimas
-                  tendencias en desarrollo web.
-                </p>
-                <p>
-                  Cuando no estoy programando, disfruto de la fotografía, los viajes y
-                  explorar nuevas culturas. Creo que estas experiencias me ayudan a
-                  pensar de manera más creativa y a entender mejor las necesidades de
-                  los usuarios.
-                </p>
+                {t.aboutPage.bio.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
               </div>
 
               {/* Skills */}
               <div>
-                <h3 className={`text-sm tracking-wider uppercase mb-4 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>Tecnologías</h3>
+                <h3 className={`text-sm tracking-wider uppercase mb-4 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>{t.aboutPage.technologies}</h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
@@ -108,7 +95,7 @@ const About = () => {
 
               {/* Learning */}
               <div>
-                <h3 className={`text-sm tracking-wider uppercase mb-4 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>Aprendiendo</h3>
+                <h3 className={`text-sm tracking-wider uppercase mb-4 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}>{t.aboutPage.learning}</h3>
                 <div className="flex flex-wrap gap-2">
                   {learning.map((tech) => (
                     <span
@@ -127,7 +114,7 @@ const About = () => {
                   href="/#contact"
                   className={`group inline-flex items-center gap-3 px-6 py-3 text-sm font-medium tracking-wide transition-colors ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
                 >
-                  Trabajemos juntos
+                  {t.aboutPage.workTogether}
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Link>
               </div>
