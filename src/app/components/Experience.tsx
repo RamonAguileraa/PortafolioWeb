@@ -87,7 +87,8 @@ const leadership = [
     highlights: [
       'Lideré al equipo de desarrollo de videojuegos indie',
       'Ganamos la beca del 100% en emprendimiento en Ludic Jam (Tec de Monterrey)'
-    ]
+    ],
+    images: ['/beca.png']
   }
 ]
 
@@ -142,8 +143,8 @@ const startups = [
   {
     name: 'IBENTEU',
     logo: '/ibenteu.jpg',
-    type: 'App Móvil',
-    description: 'Aplicación móvil desarrollada como proyecto de software.',
+    type: 'App Web',
+    description: 'Aplicación web desarrollada como proyecto de software.',
     status: 'Finalizado'
   }
 ]
@@ -288,7 +289,8 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-neutral-950 p-5 sm:p-6 border border-neutral-800 hover:border-neutral-700 transition-colors"
+                onClick={() => item.images && setSelectedEvent({ event: item.organization, images: item.images })}
+                className={`bg-neutral-950 p-5 sm:p-6 border border-neutral-800 hover:border-neutral-700 transition-colors ${item.images ? 'cursor-pointer group' : ''}`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                   <div className="flex items-start gap-3">
@@ -307,7 +309,12 @@ export default function Experience() {
                       <p className="text-neutral-400 text-sm">{item.organization}</p>
                     </div>
                   </div>
-                  <span className="text-xs text-neutral-500 whitespace-nowrap">{item.period}</span>
+                  <div className="flex items-center gap-2">
+                    {item.images && (
+                      <ImageIcon className="w-4 h-4 text-neutral-600 group-hover:text-pink-400 transition-colors" />
+                    )}
+                    <span className="text-xs text-neutral-500 whitespace-nowrap">{item.period}</span>
+                  </div>
                 </div>
                 <ul className="space-y-2">
                   {item.highlights.map((highlight, i) => (
@@ -317,6 +324,9 @@ export default function Experience() {
                     </li>
                   ))}
                 </ul>
+                {item.images && (
+                  <p className="text-neutral-700 text-[10px] mt-3 group-hover:text-neutral-500 transition-colors">Click para ver reconocimientos</p>
+                )}
               </motion.div>
             ))}
           </div>
