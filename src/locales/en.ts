@@ -70,9 +70,20 @@ export const en = {
 
   // Work Experience Data
   workExp: {
+    secEdu: {
+      role: 'Software Developer',
+      period: 'Feb 2026 - Present',
+      descriptions: [
+        'Development and maintenance of institutional systems with C# and ASP.NET MVC',
+        'Oracle database management using stored procedures and packages',
+        'Frontend development with JavaScript, jQuery, DataTables and Bootstrap',
+        'Version control with TFS/TFVC',
+        'Analysis and replication of existing patterns in institutional projects',
+      ],
+    },
     vendex: {
       role: 'Full Stack Developer',
-      period: 'Oct 2024 - Present',
+      period: 'Oct 2024 - Feb 2026',
       descriptions: [
         'Development and integration of internal CRM modules',
         'Optimization of AI algorithms for lead scoring',
@@ -113,6 +124,15 @@ export const en = {
 
   // Leadership Data
   leadershipData: {
+    innova: {
+      role: 'Founder & Leader',
+      period: '2025 - Present',
+      highlights: [
+        'Founded Innova, an innovation and technology community in Chihuahua',
+        'Connecting developers, entrepreneurs and technology enthusiasts',
+        'Driving collaborative projects and community learning',
+      ],
+    },
     utch: {
       role: 'Programming Club Leader',
       period: '2024 - Present',
