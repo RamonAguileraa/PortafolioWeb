@@ -14,12 +14,22 @@ export default function Experience() {
 
   const workExperience = [
     {
+      role: t.workExp.secEdu.role,
+      company: 'Secretaría de Educación del Estado de Chihuahua',
+      logo: '',
+      location: 'Chihuahua, México',
+      period: t.workExp.secEdu.period,
+      current: true,
+      description: t.workExp.secEdu.descriptions,
+      technologies: ['C#', 'ASP.NET MVC', '.NET', 'Oracle', 'jQuery', 'Bootstrap', 'TFS/TFVC']
+    },
+    {
       role: t.workExp.vendex.role,
       company: 'Vendex.mx',
       logo: '/vendex.png',
       location: 'Chihuahua, México',
       period: t.workExp.vendex.period,
-      current: true,
+      current: false,
       description: t.workExp.vendex.descriptions,
       technologies: ['React', 'Node.js', 'AI/ML', 'APIs', 'Scrum']
     },
@@ -56,11 +66,11 @@ export default function Experience() {
 
   const leadership = [
     {
-      role: t.leadershipData.utch.role,
-      organization: 'Universidad Tecnológica de Chihuahua',
-      logo: '/utch.png',
-      period: t.leadershipData.utch.period,
-      highlights: t.leadershipData.utch.highlights
+      role: t.leadershipData.innova.role,
+      organization: 'Comunidad Innova — Innovación y Tecnología',
+      logo: '/innova.jpg',
+      period: t.leadershipData.innova.period,
+      highlights: t.leadershipData.innova.highlights
     },
     {
       role: t.leadershipData.bosozoku.role,
