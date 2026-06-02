@@ -70,9 +70,20 @@ export const es = {
 
   // Work Experience Data
   workExp: {
+    secEdu: {
+      role: 'Desarrollador de Software',
+      period: 'Feb 2026 - Presente',
+      descriptions: [
+        'Desarrollo y mantenimiento de sistemas institucionales con C# y ASP.NET MVC',
+        'Gestión de base de datos Oracle mediante stored procedures y packages',
+        'Desarrollo de interfaces con JavaScript, jQuery, DataTables y Bootstrap',
+        'Control de versiones con TFS/TFVC',
+        'Análisis y replicación de patrones existentes en proyectos institucionales',
+      ],
+    },
     vendex: {
       role: 'Full Stack Developer',
-      period: 'Oct 2024 - Presente',
+      period: 'Oct 2024 - Feb 2026',
       descriptions: [
         'Desarrollo e integración de módulos internos del CRM',
         'Optimización de algoritmos de IA para scoring de leads',
@@ -113,6 +124,15 @@ export const es = {
 
   // Leadership Data
   leadershipData: {
+    innova: {
+      role: 'Founder & Líder',
+      period: '2025 - Presente',
+      highlights: [
+        'Fundé Innova, comunidad de innovación y tecnología en Chihuahua',
+        'Conectamos developers, emprendedores y entusiastas de la tecnología',
+        'Impulsamos proyectos colaborativos y aprendizaje en comunidad',
+      ],
+    },
     utch: {
       role: 'Líder del Club de Programación',
       period: '2024 - Presente',
