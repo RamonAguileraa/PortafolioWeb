@@ -20,7 +20,7 @@ export const metadata = {
     default: 'Ramón Aguilera | Ing. en TI & Full Stack Developer en Chihuahua',
     template: '%s | Ramón Aguilera'
   },
-  description: 'Ingeniero en Tecnologías de la Información y Full Stack Developer en Chihuahua, México. Especializado en React, Next.js, Node.js, aplicaciones móviles, UI/UX y marketing digital. Fundador de Studioko.',
+  description: 'Ingeniero en Tecnologías de la Información y Desarrollador de Software en Chihuahua, México. Desarrollador en Secretaría de Educación, founder de Innova. Especializado en React, Next.js, C#, .NET, Oracle, UI/UX y marketing digital.',
   keywords: [
     'Ramón Aguilera',
     'desarrollador web Chihuahua',
@@ -114,8 +114,7 @@ const jsonLd = {
   knowsAbout: ['React', 'Next.js', 'TypeScript', 'Node.js', 'React Native', 'UI/UX Design', 'Web Development'],
   worksFor: {
     '@type': 'Organization',
-    name: 'Studioko',
-    url: 'https://studioko.dev'
+    name: 'Secretaría de Educación del Estado de Chihuahua',
   }
 }
 
