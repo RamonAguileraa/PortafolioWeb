@@ -4,12 +4,14 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Heart, Plane, MapPin, Target, Loader2, GraduationCap } from 'lucide-react'
 import Image from 'next/image'
+import { useLanguage } from '../../context/LanguageContext'
 
 const SUGGESTED_AMOUNTS = [100, 200, 500, 1000]
 const GOAL = 115000
 const RAISED = 0
 
 export default function Donations() {
+  const { t } = useLanguage()
   const [selected, setSelected] = useState<number | null>(200)
   const [custom, setCustom] = useState('')
   const [loading, setLoading] = useState(false)
@@ -28,11 +30,11 @@ export default function Donations() {
   const handleDonate = async () => {
     const amount = getAmount()
     if (!amount) {
-      setError('Por favor elige o ingresa un monto válido (mínimo $10 MXN)')
+      setError(t.donate.errorMin)
       return
     }
     if (amount > 5000000) {
-      setError('El monto máximo es $50,000 MXN')
+      setError(t.donate.errorMax)
       return
     }
 
@@ -47,10 +49,10 @@ export default function Donations() {
       })
 
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Error desconocido')
+      if (!res.ok) throw new Error(data.error || 'Error')
       window.location.href = data.url
     } catch {
-      setError('Ocurrió un error. Por favor intenta de nuevo.')
+      setError(t.donate.errorGeneric)
       setLoading(false)
     }
   }
@@ -73,14 +75,13 @@ export default function Donations() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/hust.png"
+          src="/huazhong.jpg"
           alt="Huazhong University of Science and Technology, Wuhan"
           fill
           className="object-cover object-center"
-          quality={90}
+          quality={95}
           priority={false}
         />
-        {/* Gradient overlay: más oscuro abajo para que el widget sea legible */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/80" />
       </div>
 
@@ -99,7 +100,7 @@ export default function Donations() {
               >
                 <GraduationCap className="w-4 h-4 text-pink-400" />
                 <span className="text-pink-400 text-xs tracking-[0.25em] uppercase">
-                  Programa HUST 3+3 · Wuhan, China
+                  {t.donate.label}
                 </span>
               </motion.div>
 
@@ -110,9 +111,9 @@ export default function Donations() {
                 transition={{ delay: 0.1 }}
                 className="text-3xl sm:text-4xl lg:text-6xl font-light text-white mb-4 sm:mb-6"
               >
-                Apóyame en mi
+                {t.donate.title}
                 <br />
-                <span className="font-serif italic text-neutral-300">aventura en China</span>
+                <span className="font-serif italic text-neutral-300">{t.donate.titleItalic}</span>
               </motion.h2>
 
               <motion.p
@@ -122,8 +123,10 @@ export default function Donations() {
                 transition={{ delay: 0.2 }}
                 className="text-neutral-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
               >
-                Fui aceptado en el programa <span className="text-pink-400 font-medium">HUST 3+3</span> — una colaboración entre mi universidad y la{' '}
-                <span className="text-white font-medium">Huazhong University of Science and Technology</span> en Wuhan. Una oportunidad que muy pocos estudiantes de TI en México consiguen.
+                {t.donate.description1}{' '}
+                <span className="text-pink-400 font-medium">{t.donate.program}</span>{' '}
+                — {t.donate.university}{' '}
+                {t.donate.description1b}
               </motion.p>
             </div>
 
@@ -139,16 +142,16 @@ export default function Donations() {
                 <div className="flex-1 space-y-4">
                   <div className="flex items-center gap-2">
                     <Plane className="w-4 h-4 text-pink-400 flex-shrink-0" />
-                    <span className="text-white/80 text-sm">Destino: Wuhan, China · HUST</span>
+                    <span className="text-white/80 text-sm">{t.donate.destination}</span>
                     <MapPin className="w-3.5 h-3.5 text-white/30" />
                   </div>
 
                   <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-                    El programa cubre parte de los gastos académicos, pero el vuelo internacional, visa, seguro médico y los primeros meses de vida allá representan un reto real. Cualquier apoyo me acerca más a este sueño.
+                    {t.donate.description2}
                   </p>
 
                   <p className="text-neutral-400 text-sm leading-relaxed">
-                    Si quieres apoyarme, con gusto te devuelvo el favor con algo de lo que hago en{' '}
+                    {t.donate.description3}{' '}
                     <a
                       href="https://studioko.dev"
                       target="_blank"
@@ -157,10 +160,10 @@ export default function Donations() {
                     >
                       Studioko.dev
                     </a>
-                    : una landing page, identidad visual, asesoría técnica o desarrollo web. Escríbeme después de donar y lo coordinamos.
+                    {t.donate.description3b}
                   </p>
 
-                  <p className="text-neutral-500 text-sm">Cada peso cuenta. Gracias de antemano. 🙏</p>
+                  <p className="text-neutral-500 text-sm">{t.donate.thanks}</p>
                 </div>
 
                 {/* Stats */}
@@ -169,11 +172,11 @@ export default function Donations() {
                     <p className="text-2xl sm:text-3xl font-light text-white">
                       ${RAISED.toLocaleString()}
                     </p>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mt-0.5">MXN recaudado</p>
+                    <p className="text-[11px] uppercase tracking-wider text-white/40 mt-0.5">{t.donate.raised}</p>
                   </div>
                   <div className="text-center sm:text-right">
                     <p className="text-2xl sm:text-3xl font-light text-white">$115k</p>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mt-0.5">MXN meta</p>
+                    <p className="text-[11px] uppercase tracking-wider text-white/40 mt-0.5">{t.donate.goalLabel}</p>
                   </div>
                 </div>
               </div>
@@ -183,7 +186,7 @@ export default function Donations() {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Target className="w-4 h-4 text-pink-400" />
-                    <span className="text-xs uppercase tracking-wider text-white/40">Progreso</span>
+                    <span className="text-xs uppercase tracking-wider text-white/40">{t.donate.progress}</span>
                   </div>
                   <span className="text-pink-400 text-sm font-medium">{progress.toFixed(0)}%</span>
                 </div>
@@ -197,7 +200,7 @@ export default function Donations() {
                   />
                 </div>
                 <p className="text-xs mt-2 text-white/30">
-                  ${(GOAL - RAISED).toLocaleString()} MXN restantes · Meta: $100k–$130k MXN
+                  ${(GOAL - RAISED).toLocaleString()} {t.donate.remaining}
                 </p>
               </div>
             </motion.div>
@@ -211,7 +214,7 @@ export default function Donations() {
               className="bg-white/5 backdrop-blur-md border border-white/10 p-6 sm:p-8"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-5">
-                Elige tu aporte en MXN
+                {t.donate.chooseAmount}
               </p>
 
               {/* Amount buttons */}
@@ -240,7 +243,7 @@ export default function Donations() {
                   type="number"
                   min="10"
                   max="50000"
-                  placeholder="Otro monto"
+                  placeholder={t.donate.customPlaceholder}
                   value={custom}
                   onChange={handleCustomChange}
                   className="w-full bg-transparent pl-8 pr-16 py-3.5 text-base outline-none text-white placeholder-white/20"
@@ -263,13 +266,13 @@ export default function Donations() {
                 ) : (
                   <>
                     <Heart className="w-5 h-5 group-hover:scale-110 transition-transform fill-white" />
-                    Apoyarme
+                    {t.donate.donateBtn}
                   </>
                 )}
               </button>
 
               <p className="text-center text-xs mt-4 text-white/25">
-                Pago seguro con Stripe · Sin crear cuenta · Escríbeme y coordinamos tu beneficio
+                {t.donate.secure}
               </p>
             </motion.div>
 
