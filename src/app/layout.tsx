@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata = {
-  metadataBase: new URL('https://ramonaguilera.dev'),
+  metadataBase: new URL('https://ramonaguilera.xyz'),
   title: {
     default: 'Ramón Aguilera | Ing. en TI & Full Stack Developer en Chihuahua',
     template: '%s | Ramón Aguilera'
@@ -60,7 +60,7 @@ export const metadata = {
   openGraph: {
     title: 'Ramón Aguilera | Ing. en TI & Full Stack Developer',
     description: 'Ingeniero en TI y Full Stack Developer en Chihuahua. Especializado en React, Next.js, apps móviles y diseño UI/UX.',
-    url: 'https://ramonaguilera.dev',
+    url: 'https://ramonaguilera.xyz',
     siteName: 'Ramón Aguilera - Portafolio',
     locale: 'es_MX',
     alternateLocale: 'en_US',
@@ -84,10 +84,10 @@ export const metadata = {
     google: 'tu-codigo-de-verificacion',
   },
   alternates: {
-    canonical: 'https://ramonaguilera.dev',
+    canonical: 'https://ramonaguilera.xyz',
     languages: {
-      'es-MX': 'https://ramonaguilera.dev',
-      'en-US': 'https://ramonaguilera.dev/en',
+      'es-MX': 'https://ramonaguilera.xyz',
+      'en-US': 'https://ramonaguilera.xyz/en',
     },
   },
 }
@@ -102,8 +102,8 @@ const jsonLd = {
   name: 'Ramón Aguilera',
   jobTitle: 'Ingeniero en Tecnologías de la Información & Full Stack Developer',
   description: 'Full Stack Developer especializado en React, Next.js y desarrollo de aplicaciones móviles en Chihuahua, México.',
-  url: 'https://ramonaguilera.dev',
-  image: 'https://ramonaguilera.dev/yo.png',
+  url: 'https://ramonaguilera.xyz',
+  image: 'https://ramonaguilera.xyz/yo.png',
   email: 'ramonaguileradve@gmail.com',
   address: {
     '@type': 'PostalAddress',

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Apóyame en China — Ramón Aguilera 🇨🇳',
     description: 'Fui aceptado en el programa HUST 3+3 en Wuhan, China. Cualquier apoyo me acerca más a este sueño. A cambio ofrezco servicios de diseño web e identidad visual.',
-    url: 'https://ramonaguilera.dev/china',
+    url: 'https://ramonaguilera.xyz/china',
     siteName: 'Ramón Aguilera',
     images: [
       {
