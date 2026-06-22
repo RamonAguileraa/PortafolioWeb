@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
           price_data: {
             currency: 'mxn',
             product_data: {
-              name: 'Apoyo para prácticas en China 🇨🇳 — Ramón Aguilera',
-              description: 'Gracias por apoyar el programa HUST 3+3 de Ramón. Tu contribución hace posible esta aventura.',
+              name: 'Apoya a Ramón en China 🇨🇳 — Programa HUST 3+3',
+              description: 'Ramón fue aceptado en el programa HUST 3+3 de la Huazhong University of Science and Technology en Wuhan, China. Tu donación cubre vuelo internacional, visa, seguro médico y primeros meses de estancia. A cambio, Ramón ofrece servicios de diseño web e identidad visual desde Studioko.dev. ¡Gracias por hacer posible esta aventura!',
             },
             unit_amount: amount,
           },
