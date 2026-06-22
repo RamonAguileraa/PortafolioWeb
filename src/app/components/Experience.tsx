@@ -16,7 +16,7 @@ export default function Experience() {
     {
       role: t.workExp.secEdu.role,
       company: 'Secretaría de Educación del Estado de Chihuahua',
-      logo: '',
+      logo: '/logoSeyd.png',
       location: 'Chihuahua, México',
       period: t.workExp.secEdu.period,
       current: true,
