@@ -209,6 +209,33 @@ export const en = {
     instagram: 'Follow me',
   },
 
+  // Donations
+  donate: {
+    label: 'HUST 3+3 Program · Wuhan, China',
+    title: 'Support me on my',
+    titleItalic: 'adventure in China',
+    destination: 'Destination: Wuhan, China · HUST',
+    description1: 'I was accepted into the',
+    program: 'HUST 3+3',
+    university: 'Huazhong University of Science and Technology',
+    description1b: 'program in Wuhan — an opportunity very few IT students in Mexico get.',
+    description2: 'The program covers part of the academic expenses, but the international flight, visa, health insurance and first months of living there are a real challenge. Any support gets me closer to this dream.',
+    description3: "If you'd like to support me, I'll gladly give back with something from what I do at",
+    description3b: ': a landing page, visual identity, technical consulting or web development. Message me after donating and we\'ll coordinate.',
+    thanks: 'Every peso counts. Thank you in advance. 🙏',
+    raised: 'MXN raised',
+    goalLabel: 'MXN goal',
+    progress: 'Progress',
+    remaining: 'MXN remaining · Goal: $100k–$130k MXN',
+    chooseAmount: 'Choose your contribution in MXN',
+    customPlaceholder: 'Other amount',
+    donateBtn: 'Support me',
+    secure: 'Secure payment with Stripe · No account needed · Message me to coordinate your benefit',
+    errorMin: 'Please choose or enter a valid amount (minimum $10 MXN)',
+    errorMax: 'Maximum amount is $50,000 MXN',
+    errorGeneric: 'An error occurred. Please try again.',
+  },
+
   // Footer
   footer: {
     rights: 'All rights reserved.',
