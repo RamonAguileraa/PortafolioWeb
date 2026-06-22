@@ -38,6 +38,11 @@ export const metadata = {
     'UTCH',
     'freelancer Chihuahua'
   ],
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   authors: [{ name: 'Ramón Aguilera', url: 'https://github.com/RamonAguileraa' }],
   creator: 'Ramón Aguilera',
   publisher: 'Ramón Aguilera',
