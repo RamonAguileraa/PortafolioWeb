@@ -13,10 +13,10 @@ export const metadata: Metadata = {
     siteName: 'Ramón Aguilera',
     images: [
       {
-        url: 'https://ramonaguilera.dev/huazhong.jpg',
+        url: 'https://ramonaguilera.xyz/og-china.png',
         width: 1200,
         height: 630,
-        alt: 'Huazhong University of Science and Technology, Wuhan, China',
+        alt: 'Apóyame en China — Ramón Aguilera',
       },
     ],
     type: 'website',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Apóyame en China — Ramón Aguilera 🇨🇳',
     description: 'Fui aceptado en el programa HUST 3+3 en Wuhan. Cualquier apoyo me acerca más a este sueño.',
-    images: ['https://ramonaguilera.dev/huazhong.jpg'],
+    images: ['https://ramonaguilera.xyz/og-china.png'],
   },
 }
 
