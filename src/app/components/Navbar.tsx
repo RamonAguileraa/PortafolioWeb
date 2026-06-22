@@ -21,7 +21,6 @@ export default function Navbar() {
     { name: t.nav.services, href: '#services' },
     { name: t.nav.projects, href: '#selected-work' },
     { name: t.nav.experience, href: '#experience' },
-    { name: '🇨🇳 China', href: '#donate' },
     { name: t.nav.contact, href: '#contact' },
   ]
 
@@ -99,6 +98,12 @@ export default function Navbar() {
                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
               <Link
+                href="/china"
+                className="text-sm text-pink-400 hover:text-pink-300 transition-colors tracking-wide"
+              >
+                🇨🇳 China
+              </Link>
+              <Link
                 href="/projects"
                 className={`ml-2 px-5 py-2 text-sm transition-colors tracking-wide ${theme === 'dark' ? 'bg-white text-black hover:bg-neutral-200' : 'bg-neutral-900 text-white hover:bg-neutral-800'}`}
               >
@@ -161,7 +166,20 @@ export default function Navbar() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+              >
+                <Link
+                  href="/china"
+                  onClick={() => setIsOpen(false)}
+                  className="text-2xl font-light text-pink-400 hover:text-pink-300 transition-colors"
+                >
+                  🇨🇳 China
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: (navLinks.length + 1) * 0.1 }}
               >
                 <Link
                   href="/projects"
