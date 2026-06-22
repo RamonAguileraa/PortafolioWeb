@@ -3,7 +3,7 @@ import TechStack from './components/TechStack'
 import Services from './components/Services'
 import SelectedWork from './components/SelectedWork'
 import Experience from './components/Experience'
-import Donations from './components/Donations'
+import ChinaBanner from './components/ChinaBanner'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -19,7 +19,7 @@ export default function Home() {
       </section>
       <SelectedWork />
       <Experience />
-      <Donations />
+      <ChinaBanner />
       <Contact />
       <Footer />
     </main>
