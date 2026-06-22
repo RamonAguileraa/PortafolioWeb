@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: t.nav.services, href: '#services' },
     { name: t.nav.projects, href: '#selected-work' },
     { name: t.nav.experience, href: '#experience' },
+    { name: '🇨🇳 China', href: '#donate' },
     { name: t.nav.contact, href: '#contact' },
   ]
 
