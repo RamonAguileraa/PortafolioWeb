@@ -51,7 +51,7 @@ export default function TechStack() {
       </p>
 
       {/* Marquee wrapper — fade edges */}
-      <div className="relative">
+      <div className="relative pause-on-hover">
         {/* Fade izquierda */}
         <div className={`pointer-events-none absolute left-0 inset-y-0 w-16 sm:w-24 z-10 ${
           theme === 'dark'
@@ -65,9 +65,11 @@ export default function TechStack() {
             : 'bg-gradient-to-l from-neutral-100 to-transparent'
         }`} />
 
-        {/* Track */}
-        <div className="flex animate-marquee">
-          {/* Dos copias para el loop sin corte */}
+        {/* Track — dos copias para loop sin corte */}
+        <div
+          className="flex"
+          style={{ animation: 'marquee 22s linear infinite', willChange: 'transform' }}
+        >
           {[...technologies, ...technologies].map((tech, index) => (
             <div
               key={index}
