@@ -16,8 +16,9 @@ export default function ChinaBanner() {
         src="/huazhong.jpg"
         alt="HUST Wuhan"
         fill
-        className="object-cover object-top"
+        className="object-cover object-[50%_70%]"
         quality={90}
+        priority
       />
       <div className="absolute inset-0 bg-black/70" />
 
