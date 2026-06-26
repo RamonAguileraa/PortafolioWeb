@@ -2,17 +2,15 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Plane, MapPin, Target, Loader2, GraduationCap } from 'lucide-react'
+import { Heart, Target, Loader2, GraduationCap, Plane } from 'lucide-react'
 import Image from 'next/image'
 import { useLanguage } from '../../context/LanguageContext'
 
-const SUGGESTED_AMOUNTS = [100, 200, 500, 1000]
 const GOAL = 115000
 const RAISED = 0
 
 export default function Donations() {
   const { t } = useLanguage()
-  const [selected, setSelected] = useState<number | null>(200)
   const [custom, setCustom] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -20,34 +18,22 @@ export default function Donations() {
   const progress = Math.min((RAISED / GOAL) * 100, 100)
 
   const getAmount = (): number | null => {
-    if (custom) {
-      const val = parseFloat(custom)
-      return isNaN(val) || val < 10 ? null : Math.round(val * 100)
-    }
-    return selected ? selected * 100 : null
+    const val = parseFloat(custom)
+    return isNaN(val) || val < 10 ? null : Math.round(val * 100)
   }
 
   const handleDonate = async () => {
     const amount = getAmount()
-    if (!amount) {
-      setError(t.donate.errorMin)
-      return
-    }
-    if (amount > 5000000) {
-      setError(t.donate.errorMax)
-      return
-    }
-
+    if (!amount) { setError(t.donate.errorMin); return }
+    if (amount > 5000000) { setError(t.donate.errorMax); return }
     setError('')
     setLoading(true)
-
     try {
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount }),
       })
-
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Error')
       window.location.href = data.url
@@ -57,226 +43,172 @@ export default function Donations() {
     }
   }
 
-  const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCustom(e.target.value)
-    setSelected(null)
-    setError('')
-  }
-
-  const handleSuggestedClick = (amount: number) => {
-    setSelected(amount)
-    setCustom('')
-    setError('')
-  }
-
   return (
-    <section id="donate" className="relative overflow-hidden">
-
-      {/* Background image */}
+    /* h-screen - navbar (h-20 = 5rem), mt-20 para no quedar bajo la navbar */
+    <section
+      id="donate"
+      className="relative overflow-hidden"
+      style={{ height: 'calc(100vh - 5rem)', marginTop: '5rem' }}
+    >
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src="/huazhong.jpg"
           alt="Huazhong University of Science and Technology, Wuhan"
           fill
-          className="object-cover object-center"
-          quality={95}
-          priority={false}
+          className="object-cover object-top"
+          quality={90}
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/65 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/72 to-black/88" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 py-20 sm:py-28 lg:py-36">
-        <div className="container mx-auto px-5 sm:px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto">
+      {/* Content — fills the whole section */}
+      <div className="relative z-10 h-full flex flex-col px-5 sm:px-6 lg:px-12 py-6 sm:py-8 max-w-5xl mx-auto w-full">
 
-            {/* Header */}
-            <div className="text-center mb-12 sm:mb-16">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center gap-2 mb-4"
-              >
-                <GraduationCap className="w-4 h-4 text-pink-400" />
-                <span className="text-pink-400 text-xs tracking-[0.25em] uppercase">
-                  {t.donate.label}
-                </span>
-              </motion.div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-5 sm:mb-6 flex-shrink-0"
+        >
+          <div className="inline-flex items-center gap-2 mb-2">
+            <GraduationCap className="w-4 h-4 text-pink-400" />
+            <span className="text-pink-400 text-xs tracking-[0.25em] uppercase font-medium">
+              {t.donate.label}
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-light text-white leading-tight mb-2">
+            {t.donate.title}{' '}
+            <span className="font-serif italic">{t.donate.titleItalic}</span>
+          </h1>
+          <p className="text-white/75 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+            {t.donate.description1}{' '}
+            <span className="text-pink-400 font-semibold">{t.donate.program}</span>{' '}
+            — {t.donate.university}. {t.donate.description1b}
+          </p>
+        </motion.div>
 
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-3xl sm:text-4xl lg:text-6xl font-light text-white mb-4 sm:mb-6"
-              >
-                {t.donate.title}
-                <br />
-                <span className="font-serif italic text-neutral-300">{t.donate.titleItalic}</span>
-              </motion.h2>
+        {/* Two-column grid — ocupa el espacio restante */}
+        <div className="grid lg:grid-cols-2 gap-3 sm:gap-4 flex-1 min-h-0">
 
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-neutral-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
-              >
-                {t.donate.description1}{' '}
-                <span className="text-pink-400 font-medium">{t.donate.program}</span>{' '}
-                — {t.donate.university}{' '}
-                {t.donate.description1b}
-              </motion.p>
+          {/* Left — story + stats + progress */}
+          <motion.div
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white/8 backdrop-blur-md border border-white/15 p-4 sm:p-6 flex flex-col justify-between overflow-hidden"
+          >
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Plane className="w-3.5 h-3.5 text-pink-400 flex-shrink-0" />
+                <span className="text-white text-xs font-medium">{t.donate.destination}</span>
+              </div>
+              <p className="text-white text-xs sm:text-sm leading-relaxed">
+                {t.donate.description2}
+              </p>
+              <p className="text-neutral-200 text-xs leading-relaxed">
+                {t.donate.description3}{' '}
+                <a
+                  href="https://studioko.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-pink-400 hover:text-pink-300 transition-colors underline underline-offset-2"
+                >
+                  Studioko.dev
+                </a>
+                {t.donate.description3b}
+              </p>
+              <p className="text-white/55 text-xs font-medium">{t.donate.thanks}</p>
             </div>
 
-            {/* Story + Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-6 sm:p-8 mb-6"
-            >
-              <div className="flex flex-col sm:flex-row gap-6 sm:gap-10">
-                <div className="flex-1 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Plane className="w-4 h-4 text-pink-400 flex-shrink-0" />
-                    <span className="text-white/80 text-sm">{t.donate.destination}</span>
-                    <MapPin className="w-3.5 h-3.5 text-white/30" />
-                  </div>
-
-                  <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-                    {t.donate.description2}
-                  </p>
-
-                  <p className="text-neutral-400 text-sm leading-relaxed">
-                    {t.donate.description3}{' '}
-                    <a
-                      href="https://studioko.dev"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-pink-400 hover:text-pink-300 transition-colors underline underline-offset-2"
-                    >
-                      Studioko.dev
-                    </a>
-                    {t.donate.description3b}
-                  </p>
-
-                  <p className="text-neutral-500 text-sm">{t.donate.thanks}</p>
+            {/* Stats + progress */}
+            <div className="mt-4 space-y-3">
+              <div className="flex justify-between">
+                <div>
+                  <p className="text-xl font-light text-white">${RAISED.toLocaleString()}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-white/45 mt-0.5">{t.donate.raised}</p>
                 </div>
-
-                {/* Stats */}
-                <div className="flex sm:flex-col justify-around sm:justify-start gap-4 sm:gap-6 sm:min-w-[150px]">
-                  <div className="text-center sm:text-right">
-                    <p className="text-2xl sm:text-3xl font-light text-white">
-                      ${RAISED.toLocaleString()}
-                    </p>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mt-0.5">{t.donate.raised}</p>
-                  </div>
-                  <div className="text-center sm:text-right">
-                    <p className="text-2xl sm:text-3xl font-light text-white">$115k</p>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mt-0.5">{t.donate.goalLabel}</p>
-                  </div>
+                <div className="text-right">
+                  <p className="text-xl font-light text-white">$115k</p>
+                  <p className="text-[10px] uppercase tracking-wider text-white/45 mt-0.5">{t.donate.goalLabel}</p>
                 </div>
               </div>
-
-              {/* Progress bar */}
-              <div className="mt-6 sm:mt-8">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <Target className="w-4 h-4 text-pink-400" />
-                    <span className="text-xs uppercase tracking-wider text-white/40">{t.donate.progress}</span>
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-1.5">
+                    <Target className="w-3 h-3 text-pink-400" />
+                    <span className="text-[10px] uppercase tracking-wider text-white/45">{t.donate.progress}</span>
                   </div>
-                  <span className="text-pink-400 text-sm font-medium">{progress.toFixed(0)}%</span>
+                  <span className="text-pink-400 text-xs font-medium">{progress.toFixed(0)}%</span>
                 </div>
-                <div className="relative h-1.5 rounded-full overflow-hidden bg-white/10">
+                <div className="relative h-1 rounded-full overflow-hidden bg-white/15">
                   <motion.div
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${progress}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 1.2, ease: 'easeOut', delay: 0.5 }}
                     className="absolute inset-y-0 left-0 bg-gradient-to-r from-pink-600 to-pink-400 rounded-full"
                   />
                 </div>
-                <p className="text-xs mt-2 text-white/30">
+                <p className="text-[10px] mt-1 text-white/35">
                   ${(GOAL - RAISED).toLocaleString()} {t.donate.remaining}
                 </p>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
-            {/* Donation widget */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.25 }}
-              className="bg-white/5 backdrop-blur-md border border-white/10 p-6 sm:p-8"
+          {/* Right — form */}
+          <motion.div
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="bg-white/8 backdrop-blur-md border border-white/15 p-4 sm:p-6 flex flex-col justify-center gap-4"
+          >
+            <p className="text-xs uppercase tracking-[0.2em] text-white font-medium">
+              {t.donate.chooseAmount}
+            </p>
+
+            {/* Amount input */}
+            <div className={`relative border-2 transition-colors ${
+              custom ? 'border-pink-500' : 'border-white/20 focus-within:border-white/50'
+            }`}>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-white/55">$</span>
+              <input
+                type="number"
+                min="10"
+                placeholder={t.donate.customPlaceholder}
+                value={custom}
+                onChange={(e) => { setCustom(e.target.value); setError('') }}
+                className="w-full bg-transparent pl-9 pr-16 py-4 text-2xl outline-none text-white placeholder-white/25 font-light"
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs uppercase tracking-wider text-white/45 font-medium">
+                MXN
+              </span>
+            </div>
+
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+
+            {/* CTA */}
+            <button
+              onClick={handleDonate}
+              disabled={loading}
+              className="group w-full flex items-center justify-center gap-3 py-4 sm:py-5 bg-pink-500 hover:bg-pink-400 disabled:bg-pink-500/40 text-white text-base sm:text-lg font-semibold tracking-wide transition-all duration-200"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-5">
-                {t.donate.chooseAmount}
-              </p>
+              {loading ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <>
+                  <Heart className="w-5 h-5 group-hover:scale-110 transition-transform fill-white" />
+                  {t.donate.donateBtn}
+                </>
+              )}
+            </button>
 
-              {/* Amount buttons */}
-              <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-4">
-                {SUGGESTED_AMOUNTS.map((amount) => (
-                  <button
-                    key={amount}
-                    onClick={() => handleSuggestedClick(amount)}
-                    className={`py-3 sm:py-4 text-base sm:text-lg font-light border transition-all duration-200 ${
-                      selected === amount && !custom
-                        ? 'border-pink-500 text-pink-400 bg-pink-500/15'
-                        : 'border-white/10 text-white/70 hover:border-white/30 hover:text-white'
-                    }`}
-                  >
-                    ${amount}
-                  </button>
-                ))}
-              </div>
-
-              {/* Custom amount */}
-              <div className={`relative mb-6 border transition-colors ${
-                custom ? 'border-pink-500' : 'border-white/10 focus-within:border-white/30'
-              }`}>
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-base text-white/40">$</span>
-                <input
-                  type="number"
-                  min="10"
-                  max="50000"
-                  placeholder={t.donate.customPlaceholder}
-                  value={custom}
-                  onChange={handleCustomChange}
-                  className="w-full bg-transparent pl-8 pr-16 py-3.5 text-base outline-none text-white placeholder-white/20"
-                />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs uppercase tracking-wider text-white/30">
-                  MXN
-                </span>
-              </div>
-
-              {error && <p className="text-red-400 text-sm mb-4">{error}</p>}
-
-              {/* CTA */}
-              <button
-                onClick={handleDonate}
-                disabled={loading}
-                className="group w-full flex items-center justify-center gap-3 py-4 sm:py-5 bg-pink-500 hover:bg-pink-400 disabled:bg-pink-500/40 text-white text-base font-medium tracking-wide transition-all duration-200"
-              >
-                {loading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <>
-                    <Heart className="w-5 h-5 group-hover:scale-110 transition-transform fill-white" />
-                    {t.donate.donateBtn}
-                  </>
-                )}
-              </button>
-
-              <p className="text-center text-xs mt-4 text-white/25">
-                {t.donate.secure}
-              </p>
-            </motion.div>
-
-          </div>
+            <p className="text-center text-[11px] text-white/35">
+              {t.donate.secure}
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
