@@ -45,11 +45,9 @@ export default function Donations() {
   }
 
   return (
-    /* h-screen - navbar (h-20 = 5rem), mt-20 para no quedar bajo la navbar */
     <section
       id="donate"
-      className="relative overflow-hidden"
-      style={{ height: 'calc(100vh - 5rem)', marginTop: '5rem' }}
+      className="relative mt-20 lg:h-[calc(100vh-5rem)]"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -57,31 +55,31 @@ export default function Donations() {
           src="/huazhong.jpg"
           alt="Huazhong University of Science and Technology, Wuhan"
           fill
-          className="object-cover object-top"
+          className="object-cover object-[50%_70%]"
           quality={90}
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/72 to-black/88" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/82 via-black/75 to-black/90" />
       </div>
 
-      {/* Back button — fixed bottom-left, prominent on mobile */}
+      {/* Back button */}
       <Link
         href="/"
-        className="absolute bottom-5 left-5 z-20 flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-sm font-medium tracking-wide transition-all duration-200 sm:bottom-6 sm:left-6"
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs font-medium tracking-wide transition-all duration-200 sm:top-5 sm:left-5"
       >
-        <ArrowLeft className="w-4 h-4" />
+        <ArrowLeft className="w-3.5 h-3.5" />
         Portafolio
       </Link>
 
-      {/* Content — fills the whole section */}
-      <div className="relative z-10 h-full flex flex-col px-5 sm:px-6 lg:px-12 py-6 sm:py-8 max-w-5xl mx-auto w-full">
+      {/* Contenido — mobile: columna natural; desktop: pantalla completa */}
+      <div className="relative z-10 flex flex-col lg:h-full px-5 sm:px-6 lg:px-12 pt-14 pb-8 lg:pt-8 lg:pb-6 max-w-5xl mx-auto w-full">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-5 sm:mb-6 flex-shrink-0"
+          className="text-center mb-6 lg:mb-5 flex-shrink-0"
         >
           <div className="inline-flex items-center gap-2 mb-2">
             <GraduationCap className="w-4 h-4 text-pink-400" />
@@ -89,33 +87,33 @@ export default function Donations() {
               {t.donate.label}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-light text-white leading-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-3">
             {t.donate.title}{' '}
             <span className="font-serif italic">{t.donate.titleItalic}</span>
           </h1>
-          <p className="text-white/75 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+          <p className="text-white/75 text-sm max-w-xl mx-auto leading-relaxed">
             {t.donate.description1}{' '}
             <span className="text-pink-400 font-semibold">{t.donate.program}</span>{' '}
             — {t.donate.university}. {t.donate.description1b}
           </p>
         </motion.div>
 
-        {/* Two-column grid — ocupa el espacio restante */}
-        <div className="grid lg:grid-cols-2 gap-3 sm:gap-4 flex-1 min-h-0">
+        {/* Grid — mobile: columna; desktop: dos columnas que ocupan el resto */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:flex-1 lg:min-h-0">
 
-          {/* Left — story + stats + progress */}
+          {/* Izquierda — historia + stats (en mobile va ABAJO del form) */}
           <motion.div
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white/8 backdrop-blur-md border border-white/15 p-4 sm:p-6 flex flex-col justify-between overflow-hidden"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="bg-white/8 backdrop-blur-md border border-white/15 p-5 sm:p-6 flex flex-col justify-between order-2 lg:order-1"
           >
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Plane className="w-3.5 h-3.5 text-pink-400 flex-shrink-0" />
                 <span className="text-white text-xs font-medium">{t.donate.destination}</span>
               </div>
-              <p className="text-white text-xs sm:text-sm leading-relaxed">
+              <p className="text-white text-sm leading-relaxed">
                 {t.donate.description2}
               </p>
               <p className="text-neutral-200 text-xs leading-relaxed">
@@ -134,7 +132,7 @@ export default function Donations() {
             </div>
 
             {/* Stats + progress */}
-            <div className="mt-4 space-y-3">
+            <div className="mt-5 space-y-3">
               <div className="flex justify-between">
                 <div>
                   <p className="text-xl font-light text-white">${RAISED.toLocaleString()}</p>
@@ -157,7 +155,7 @@ export default function Donations() {
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
-                    transition={{ duration: 1.2, ease: 'easeOut', delay: 0.5 }}
+                    transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
                     className="absolute inset-y-0 left-0 bg-gradient-to-r from-pink-600 to-pink-400 rounded-full"
                   />
                 </div>
@@ -168,42 +166,42 @@ export default function Donations() {
             </div>
           </motion.div>
 
-          {/* Right — form */}
+          {/* Derecha — formulario (en mobile va PRIMERO) */}
           <motion.div
             initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="bg-white/8 backdrop-blur-md border border-white/15 p-4 sm:p-6 flex flex-col justify-center gap-4"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white/8 backdrop-blur-md border border-white/15 p-5 sm:p-6 flex flex-col justify-center gap-5 order-1 lg:order-2"
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-white font-medium">
+            <p className="text-sm uppercase tracking-[0.2em] text-white font-medium">
               {t.donate.chooseAmount}
             </p>
 
-            {/* Amount input */}
+            {/* Input monto */}
             <div className={`relative border-2 transition-colors ${
               custom ? 'border-pink-500' : 'border-white/20 focus-within:border-white/50'
             }`}>
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-white/55">$</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-white/55">$</span>
               <input
                 type="number"
                 min="10"
                 placeholder={t.donate.customPlaceholder}
                 value={custom}
                 onChange={(e) => { setCustom(e.target.value); setError('') }}
-                className="w-full bg-transparent pl-9 pr-16 py-4 text-2xl outline-none text-white placeholder-white/25 font-light"
+                className="w-full bg-transparent pl-10 pr-16 py-4 text-2xl outline-none text-white placeholder-white/25 font-light"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs uppercase tracking-wider text-white/45 font-medium">
                 MXN
               </span>
             </div>
 
-            {error && <p className="text-red-400 text-sm">{error}</p>}
+            {error && <p className="text-red-400 text-sm -mt-2">{error}</p>}
 
             {/* CTA */}
             <button
               onClick={handleDonate}
               disabled={loading}
-              className="group w-full flex items-center justify-center gap-3 py-4 sm:py-5 bg-pink-500 hover:bg-pink-400 disabled:bg-pink-500/40 text-white text-base sm:text-lg font-semibold tracking-wide transition-all duration-200"
+              className="group w-full flex items-center justify-center gap-3 py-4 sm:py-5 bg-pink-500 hover:bg-pink-400 disabled:bg-pink-500/40 text-white text-lg font-semibold tracking-wide transition-all duration-200"
             >
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -215,10 +213,11 @@ export default function Donations() {
               )}
             </button>
 
-            <p className="text-center text-[11px] text-white/35">
+            <p className="text-center text-[11px] text-white/35 -mt-1">
               {t.donate.secure}
             </p>
           </motion.div>
+
         </div>
       </div>
     </section>
