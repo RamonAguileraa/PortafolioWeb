@@ -46,15 +46,15 @@ export default function Contact() {
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "100px" }}
               className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
             >
               {t.contact.label}
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "100px" }}
               transition={{ delay: 0.1 }}
               className={`text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light mb-4 sm:mb-6 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
             >
@@ -65,7 +65,7 @@ export default function Contact() {
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "100px" }}
               transition={{ delay: 0.2 }}
               className={`text-base sm:text-lg max-w-xl mx-auto ${theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'}`}
             >
@@ -75,9 +75,9 @@ export default function Contact() {
 
           {/* Email */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             transition={{ delay: 0.3 }}
             className="text-center mb-10 sm:mb-16"
           >
@@ -98,9 +98,9 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "100px" }}
                 transition={{ delay: 0.3 + index * 0.08 }}
                 className={`group p-4 sm:p-6 border transition-all duration-300 ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-neutral-700' : 'bg-white border-neutral-200 hover:border-neutral-300'}`}
               >
@@ -115,7 +115,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             transition={{ delay: 0.6 }}
             className="text-center mt-10 sm:mt-16"
           >
