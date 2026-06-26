@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Target, Loader2, GraduationCap, Plane } from 'lucide-react'
+import { Heart, Target, Loader2, GraduationCap, Plane, ArrowLeft } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useLanguage } from '../../context/LanguageContext'
 
 const GOAL = 115000
@@ -62,6 +63,15 @@ export default function Donations() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/72 to-black/88" />
       </div>
+
+      {/* Back button — fixed bottom-left, prominent on mobile */}
+      <Link
+        href="/"
+        className="absolute bottom-5 left-5 z-20 flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-sm font-medium tracking-wide transition-all duration-200 sm:bottom-6 sm:left-6"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Portafolio
+      </Link>
 
       {/* Content — fills the whole section */}
       <div className="relative z-10 h-full flex flex-col px-5 sm:px-6 lg:px-12 py-6 sm:py-8 max-w-5xl mx-auto w-full">
