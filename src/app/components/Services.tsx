@@ -44,15 +44,15 @@ export default function Services() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
           >
             {t.services.label}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             transition={{ delay: 0.1 }}
             className={`text-2xl sm:text-3xl lg:text-5xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
@@ -67,9 +67,9 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={service.number}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "100px" }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className={`group relative p-6 sm:p-8 lg:p-12 transition-all duration-500 sm:border-0 ${theme === 'dark' ? 'bg-neutral-950 hover:bg-neutral-900/50 border border-neutral-800' : 'bg-white hover:bg-neutral-50 border border-neutral-200'}`}
             >
