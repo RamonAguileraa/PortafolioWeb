@@ -148,15 +148,15 @@ export default function Experience() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
           >
             {t.experience.label}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             transition={{ delay: 0.1 }}
             className={`text-2xl sm:text-3xl lg:text-5xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
@@ -169,7 +169,7 @@ export default function Experience() {
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Briefcase className="w-5 h-5 text-pink-500" />
@@ -180,9 +180,9 @@ export default function Experience() {
             {workExperience.map((job, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "100px" }}
                 transition={{ delay: index * 0.1 }}
                 className={`relative pl-6 sm:pl-8 border-l ${theme === 'dark' ? 'border-neutral-800' : 'border-neutral-200'}`}
               >
@@ -198,6 +198,7 @@ export default function Experience() {
                             src={job.logo}
                             alt={job.company}
                             fill
+                            sizes="48px"
                             className="object-contain p-1"
                           />
                         </div>
@@ -261,7 +262,7 @@ export default function Experience() {
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Users className="w-5 h-5 text-pink-500" />
@@ -272,9 +273,9 @@ export default function Experience() {
             {leadership.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "100px" }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => item.images && setSelectedEvent({ event: item.organization, images: item.images })}
                 className={`p-5 sm:p-6 border transition-colors ${item.images ? 'cursor-pointer group' : ''} ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-neutral-700' : 'bg-neutral-50 border-neutral-200 hover:border-neutral-300'}`}
@@ -287,6 +288,7 @@ export default function Experience() {
                           src={item.logo}
                           alt={item.organization}
                           fill
+                          sizes="48px"
                           className="object-contain p-1"
                         />
                       </div>
@@ -324,7 +326,7 @@ export default function Experience() {
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Award className="w-5 h-5 text-pink-500" />
@@ -335,9 +337,9 @@ export default function Experience() {
             {mentorship.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "100px" }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => item.images && setSelectedEvent({ event: item.event, images: item.images })}
                 className={`p-5 border transition-colors ${item.images ? 'cursor-pointer group' : ''} ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-neutral-700' : 'bg-neutral-50 border-neutral-200 hover:border-neutral-300'}`}
@@ -373,7 +375,7 @@ export default function Experience() {
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             className={`flex items-center gap-3 text-lg sm:text-xl mb-8 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
           >
             <Rocket className="w-5 h-5 text-pink-500" />
@@ -384,9 +386,9 @@ export default function Experience() {
             {startups.map((startup, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "100px" }}
                 transition={{ delay: index * 0.1 }}
                 className={`p-5 border hover:border-pink-500/30 transition-colors group ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}
               >
@@ -397,6 +399,7 @@ export default function Experience() {
                         src={startup.logo}
                         alt={startup.name}
                         fill
+                        sizes="40px"
                         className="object-contain p-1"
                       />
                     </div>
