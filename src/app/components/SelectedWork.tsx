@@ -22,15 +22,15 @@ export default function SelectedWork() {
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "100px" }}
               className="text-pink-500 text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
             >
               {t.selectedWork.label}
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "100px" }}
               transition={{ delay: 0.1 }}
               className={`text-2xl sm:text-3xl lg:text-5xl font-light ${theme === 'dark' ? 'text-white' : 'text-neutral-900'}`}
             >
@@ -41,7 +41,7 @@ export default function SelectedWork() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "100px" }}
             transition={{ delay: 0.2 }}
             className="mt-4 sm:mt-0"
           >
@@ -60,10 +60,10 @@ export default function SelectedWork() {
           {featuredProjects.map((project, index) => (
             <motion.article
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
+              viewport={{ once: true, margin: "120px" }}
+              transition={{ delay: index * 0.04, duration: 0.35 }}
               className="group relative"
             >
               {/* Contenedor de imagen */}
@@ -135,10 +135,10 @@ export default function SelectedWork() {
 
         {/* CTA adicional */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+          viewport={{ once: true, margin: "80px" }}
+          transition={{ delay: 0.1 }}
           className="text-center mt-10 sm:mt-16 lg:mt-24"
         >
           <Link
