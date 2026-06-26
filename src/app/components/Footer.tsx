@@ -53,7 +53,14 @@ export default function Footer() {
         <div className={`border-t mt-8 pt-8 ${theme === 'dark' ? 'border-neutral-900' : 'border-neutral-200'}`}>
           <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}>
             <p>© {currentYear} Ramón Aguilera. {t.footer.rights}</p>
-            <p>{t.footer.madeWith}</p>
+            <a
+              href="https://studioko.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`hover:text-pink-500 transition-colors ${theme === 'dark' ? 'text-neutral-600' : 'text-neutral-500'}`}
+            >
+              Hecho por <span className="font-medium text-pink-500">Studioko</span>
+            </a>
           </div>
         </div>
       </div>
