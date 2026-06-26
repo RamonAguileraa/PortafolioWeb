@@ -30,12 +30,16 @@ export const metadata = {
     'aplicaciones móviles Chihuahua',
     'React developer México',
     'Next.js developer',
+    'C# developer México',
+    'ASP.NET MVC Chihuahua',
+    'desarrollador .NET Chihuahua',
     'Studioko',
     'diseño web Chihuahua',
     'UI/UX Chihuahua',
     'marketing digital Chihuahua',
     'ingeniero TI Chihuahua',
     'UTCH',
+    'Secretaría de Educación Chihuahua',
     'freelancer Chihuahua'
   ],
   icons: {
@@ -67,18 +71,18 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/yo.png',
-        width: 800,
-        height: 600,
-        alt: 'Ramón Aguilera - Full Stack Developer',
+        url: 'https://ramonaguilera.xyz/yo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ramón Aguilera - Full Stack Developer en Chihuahua',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ramón Aguilera | Full Stack Developer Chihuahua',
-    description: 'Ingeniero en TI y Full Stack Developer. React, Next.js, apps móviles y UI/UX.',
-    images: ['/yo.png'],
+    description: 'Ingeniero en TI y Full Stack Developer. React, Next.js, C#, .NET, Oracle y UI/UX.',
+    images: ['https://ramonaguilera.xyz/yo.png'],
   },
   verification: {
     google: 'tu-codigo-de-verificacion',
@@ -116,7 +120,12 @@ const jsonLd = {
     'https://www.linkedin.com/in/ramón-aguilera-95a2732a9',
     'https://www.instagram.com/ramon_aguileraa'
   ],
-  knowsAbout: ['React', 'Next.js', 'TypeScript', 'Node.js', 'React Native', 'UI/UX Design', 'Web Development'],
+  knowsAbout: [
+    'React', 'Next.js', 'TypeScript', 'Tailwind CSS',
+    'Node.js', 'C#', 'ASP.NET MVC', '.NET', 'Oracle',
+    'jQuery', 'Bootstrap', 'React Native', 'UI/UX Design',
+    'Web Development', 'Marketing Digital'
+  ],
   worksFor: {
     '@type': 'Organization',
     name: 'Secretaría de Educación del Estado de Chihuahua',
