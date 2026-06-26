@@ -13,13 +13,13 @@ export default function Home() {
       <section id="inicio">
         <EnhancedHero />
       </section>
+      <ChinaBanner />
       <TechStack />
       <section id="services">
         <Services />
       </section>
       <SelectedWork />
       <Experience />
-      <ChinaBanner />
       <Contact />
       <Footer />
     </main>
