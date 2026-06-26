@@ -109,6 +109,14 @@ export default function Navbar() {
               >
                 {t.nav.viewProjects}
               </Link>
+              <a
+                href="https://studioko.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`ml-1 text-xs tracking-wide transition-colors ${theme === 'dark' ? 'text-neutral-600 hover:text-neutral-400' : 'text-neutral-400 hover:text-neutral-600'}`}
+              >
+                by <span className="font-medium">Studioko</span>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
